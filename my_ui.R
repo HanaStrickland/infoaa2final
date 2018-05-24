@@ -8,13 +8,21 @@ ui <- fluidPage(
     ),
     
     mainPanel(
+      
       # Main panel
-      navbarPage(
-                 tabPanel("Tab 1"),
-                 tabPanel("Tab 2"),
-                 tabPanel("Tab 3")
+      navbarPage(tabPanel("Question 0"), # I don't know why it won't show the first tab pannel
+                 tabPanel("Question 1", plotOutput("plot1")),
+                 tabPanel("Question 2"),
+                 tabPanel("Question 3"),
+                 tabPanel("Question 4")
       )
     )
+    
+    
+    
+    
+    
   )
-  
 )
+
+
