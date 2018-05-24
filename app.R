@@ -6,12 +6,15 @@ library("readxl")
 library(shiny)
 library(plotly)
 
+
 source("my_ui.R")
 source("my_server.R")
 
 income_by_race <- read_xlsx("data/income_by_race.xlsx")
 life_expectancy <- read_xlsx("data/life_expectancy_death_rates.xlsx")
 pct_insurance_by_race <- read_xlsx("data/pct_insurance_by_race.xlsx")
+le_by_state <- read.csv("data/IHME_US_STATE_LIFE_EXPECTANCY_1987_2009.csv", stringsAsFactors = FALSE)
+le_by_income_state <- read.csv("data/health_ineq_online_table_5.csv", stringsAsFactors = FALSE)
 
 income_by_race <- as.data.frame(income_by_race)
 life_expectancy <- as.data.frame(life_expectancy)
@@ -27,8 +30,8 @@ le_black_white <- life_expectancy %>%
   select(-Age.Adusted.Death.Rate)
 
 income_black_white_wide_median <- spread(income_black_white, 
-                             key = "Race", 
-                             value = "median" )
+                                         key = "Race", 
+                                         value = "median" )
 
 colnames(income_black_white_wide_median) <- c("Year", "All Races", "Black", "White")
 
@@ -39,6 +42,15 @@ income_black_white <- gather(income_black_white_wide_median,
 income_by_le <- left_join(income_black_white, le_black_white, by = c("Year", "Race"))
 
 
-
-
 shinyApp(ui, server)
+
+
+
+
+
+
+#le_by_state source
+#http://ghdx.healthdata.org/record/united-states-adult-life-expectancy-state-and-county-1987-2009#
+
+#le_by_income_state
+#https://healthinequality.org/data/ table 5#
