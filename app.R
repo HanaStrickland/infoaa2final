@@ -11,13 +11,13 @@ source("my_ui.R")
 source("my_server.R")
 
 income_by_race <- read_xlsx("data/income_by_race.xlsx")
-life_expectancy <- read_xlsx("data/life_expectancy_death_rates.xlsx")
+le_national <- read_xlsx("data/life_expectancy_death_rates.xlsx")
 pct_insurance_by_race <- read_xlsx("data/pct_insurance_by_race.xlsx")
 le_by_state <- read.csv("data/IHME_US_STATE_LIFE_EXPECTANCY_1987_2009.csv", stringsAsFactors = FALSE)
 le_by_income_state <- read.csv("data/health_ineq_online_table_5.csv", stringsAsFactors = FALSE)
 
 income_by_race <- as.data.frame(income_by_race)
-life_expectancy <- as.data.frame(life_expectancy)
+le_national <- as.data.frame(le_national)
 pct_insurance_by_race <- as.data.frame(pct_insurance_by_race)
 
 # Combine income and le dataframes 
@@ -25,7 +25,7 @@ income_black_white <- income_by_race %>%
   filter(Race %in% c("All Races", "White Alone", "Black Alone")) %>% 
   select(Year, Race, median)
 
-le_black_white <- life_expectancy %>% 
+le_black_white <- le_national %>% 
   filter(Sex == "Both Sexes") %>% 
   select(-Age.Adusted.Death.Rate)
 
