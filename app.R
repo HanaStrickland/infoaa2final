@@ -4,6 +4,7 @@ library("maps")
 library(tidyr)
 library("readxl")
 library(shiny)
+library(plotly)
 
 source("my_ui.R")
 source("my_server.R")
@@ -36,5 +37,11 @@ income_black_white <- gather(income_black_white_wide_median,
                              value = "median_income", "All Races", "Black", "White")
 
 income_by_le <- left_join(income_black_white, le_black_white, by = c("Year", "Race"))
+
+plot1 <- ggplot(data = income_by_le) +
+  geom_point(mapping = aes(x = Avg.Life.Expectancy.Years, y = median_income,  color = Race))
+
+
+
 
 shinyApp(ui, server)
