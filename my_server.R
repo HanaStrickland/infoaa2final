@@ -1,4 +1,7 @@
 server <- function(input, output) {
+  source("data_wrangling.R")
+  
+  
   # Server stuff
   output$plot1 <- renderPlot({
 
