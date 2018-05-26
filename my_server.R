@@ -3,14 +3,34 @@ server <- function(input, output) {
   
   
   # Server stuff
-  output$plot1 <- renderPlot({
+  output$plot1a <- renderPlot({
 
-    plot1 <- ggplot(data = income_by_le) +
+    plot1a <- ggplot(data = income_by_le) +
       geom_point(mapping = aes(x = Avg.Life.Expectancy.Years, y = median_income,  color = Race)) +
       labs(title = "Relationship Between Average Life Expectancy and Median Income",
             x = "Average Life Expectancy",
             y = "Median Income")
-    plot1
+    plot1a
+  })
+  
+  output$plot1b <- renderPlot({
+    
+    plot1b <- ggplot(data = income_by_le) +
+      geom_point(mapping = aes(x = Year, y = median_income,  color = Race)) +
+      labs(title = "Median Income Over Tiime",
+           x = "Year",
+           y = "Median Income")
+    plot1b
+  })
+  
+  output$plot1c <- renderPlot({
+    
+    plot1c <- ggplot(data = income_by_le) +
+      geom_point(mapping = aes(x = Year, y = Avg.Life.Expectancy.Years,  color = Race)) +
+      labs(title = "Average Life Expectancy Over Tiime",
+           x = "Year",
+           y = "Average Life Expectancy")
+    plot1c
   })
   
   output$plot2 <- renderPlotly({
