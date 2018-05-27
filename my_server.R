@@ -13,7 +13,6 @@ server <- function(input, output) {
   results_data1 <- reactive({
     
     results <- income_by_le[income_by_le$Year == input$year, ]
-    
     results
     
     
