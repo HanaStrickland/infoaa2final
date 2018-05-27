@@ -1,5 +1,5 @@
 ui <- fluidPage(
-  titlePanel("TITLE"),
+  titlePanel("Analysis of the Relationship Between Life Expectancy and Race"),
   tabsetPanel(
     type = "tabs",
     tabPanel("Question 1", 
@@ -19,16 +19,28 @@ ui <- fluidPage(
                mainPanel(
                )
              )
+    ),
+    tabPanel("Question 3",
+             sidebarLayout(
+               sidebarPanel(
+                 
+               ),
+               mainPanel(
+               )
+             )
+    ),
+    tabPanel("Question 4",
+             sidebarLayout(
+               sidebarPanel(
+                 
+               ),
+               mainPanel(
+               )
+             )
     )
     
     
     
   )
-  
-  
-  
-  
-  
-  
-)
+
 )
