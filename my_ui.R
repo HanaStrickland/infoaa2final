@@ -13,7 +13,7 @@ ui <- fluidPage(
                  selectInput("year", label = "Select Year for Table", choices = years)
                  
                ),
-               mainPanel(plotOutput("plot1a"),
+               mainPanel(
                          plotOutput("plot1b"), 
                          plotOutput("plot1c"),
                          dataTableOutput("table1"))
@@ -26,7 +26,6 @@ ui <- fluidPage(
                  
                ),
                mainPanel(
-                 plotlyOutput("plot2"),
                  plotOutput("plot2b"),
                  dataTableOutput("table2")
                )
@@ -35,11 +34,4 @@ ui <- fluidPage(
     
     
     
-  )
-  
-  
-  
-  
-  
-  
-)
+  ))
