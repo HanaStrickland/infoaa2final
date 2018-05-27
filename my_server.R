@@ -62,6 +62,26 @@ server <- function(input, output) {
     plot4 + geom_point()
     ggplotly(plot4, tooltip="region")
   })
+  
+  output$plot5 <- renderPlotly({
+    
+    plot5 <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, fill =
+                         cut(new_data$Native.American, breaks = 4))) +
+      scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0") 
+    plot5 + geom_point()
+    ggplotly(plot5, tooltip="region")
+  })
+  
+  output$plot6 <- renderPlotly({
+    
+    plot6 <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, fill =
+                         cut(new_data$Latino, breaks = 4))) +
+      scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0") 
+    plot6 + geom_point()
+    ggplotly(plot6, tooltip="region")
+  })
 }
 
 

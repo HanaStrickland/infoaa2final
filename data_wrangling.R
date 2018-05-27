@@ -52,6 +52,13 @@ new_data$Asian.American[new_data$Asian.American %in% "NSD"] <- "0"
 new_data[new_data == 0] <- NA
 new_data$Asian.American <- as.numeric(new_data$Asian.American)
 
+new_data$Latino[new_data$Latino %in% "NSD"] <- "0"
+new_data[new_data == 0] <- NA
+new_data$Latino <- as.numeric(new_data$Latino)
+
+new_data$Native.American[new_data$Native.American %in% "NSD"] <- "0"
+new_data[new_data == 0] <- NA
+new_data$Native.American <- as.numeric(new_data$Native.American)
 
 #le_by_state source
 #http://ghdx.healthdata.org/record/united-states-adult-life-expectancy-state-and-county-1987-2009#
