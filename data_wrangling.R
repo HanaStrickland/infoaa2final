@@ -3,16 +3,14 @@ le_national <- read_xlsx("data/life_expectancy_death_rates.xlsx")
 pct_insurance_by_race <- read_xlsx("data/pct_insurance_by_race.xlsx")
 le_by_state <- read.csv("data/IHME_US_STATE_LIFE_EXPECTANCY_1987_2009.csv", stringsAsFactors = FALSE)
 le_by_income_state <- read.csv("data/health_ineq_online_table_5.csv", stringsAsFactors = FALSE)
-le_at_birth_race <- read.csv("data/le_at_birth_race.csv", stringsAsFactors = FALSE, na.strings = "NSD")
+le_at_birth_race <- read.csv("data/le_at_birth_race.csv", stringsAsFactors = FALSE)
 
 
 income_by_race <- as.data.frame(income_by_race)
 le_national <- as.data.frame(le_national)
 pct_insurance_by_race <- as.data.frame(pct_insurance_by_race)
 
-################## 
-### Question 1 ###
-##################
+
 # Combine income and le dataframes
 income_black_white <- income_by_race %>%
   filter(Race %in% c("All Races", "White Alone", "Black Alone")) %>%
@@ -33,46 +31,8 @@ income_black_white <- gather(income_black_white_wide_median,
                              value = "median_income", "All Races", "Black", "White")
 
 income_by_le <- left_join(income_black_white, le_black_white, by = c("Year", "Race"))
-income_by_le <- income_by_le %>% 
-  select(-Sex)
+income_by_le
 
-years <- unique(income_by_le$Year)
-
-# Get correlation
-
-avg_median_income_black <- sum(income_black_white_wide_median$Black) / nrow(income_black_white_wide_median)
-
-avg_median_income_white <- sum(income_black_white_wide_median$White) / nrow(income_black_white_wide_median)
-
-avg_median_income_all <- sum(income_black_white_wide_median$`All Races`) / nrow(income_black_white_wide_median)
-
-le_black <- income_by_le %>% 
-  filter(Race == "Black") %>% 
-  select(Avg.Life.Expectancy.Years) 
-
-avg_le_black <- sum(le_black, na.rm = TRUE) / (nrow(le_black) - 2)
-
-le_white <- income_by_le %>% 
-  filter(Race == "White") %>% 
-  select(Avg.Life.Expectancy.Years) 
-
-avg_le_white <- sum(le_white, na.rm = TRUE) / (nrow(le_white) - 2)
-
-le_all <- income_by_le %>% 
-  filter(Race == "All Races") %>% 
-  select(Avg.Life.Expectancy.Years) 
-
-avg_le_all <- sum(le_all, na.rm = TRUE) / (nrow(le_all) - 2)
-
-average_medians <- c(avg_median_income_black, avg_median_income_white, avg_median_income_all)
-average_les <- c(avg_le_black, avg_le_white, avg_le_all)
-
-
-correlation_income_le_race <- cor(average_medians, average_les) #0.9985999
-
-################## 
-### Question 2 ###
-##################
 
 
 
@@ -87,20 +47,15 @@ new_data <- left_join(state_data, le_at_birth_race)
 new_data$African.American[new_data$African.American %in% "NSD"] <- "0"
 new_data[new_data == 0] <- NA
 new_data$African.American <- as.numeric(new_data$African.American)
-change <- new_data %>%
-  mutate(cut(new_data$African.American, breaks = 4))
 
-# plot 2b
-le_at_birth_race_long <- le_at_birth_race %>% 
-  filter(region != "United States") %>% 
-  gather(key = "Race",
-         value = "Life_Expectancy", "White", "African.American", "Latino", "Asian.American",  
-         "Native.American")
+new_data$Asian.American[new_data$Asian.American %in% "NSD"] <- "0"
+new_data[new_data == 0] <- NA
+new_data$Asian.American <- as.numeric(new_data$Asian.American)
 
-locations <- unique(le_at_birth_race_long$region)
+new_data$Latino[new_data$Latino %in% "NSD"] <- "0"
+new_data[new_data == 0] <- NA
+new_data$Latino <- as.numeric(new_data$Latino)
 
-#le_by_state source
-#http://ghdx.healthdata.org/record/united-states-adult-life-expectancy-state-and-county-1987-2009#
-
-#le_by_income_state
-#https://healthinequality.org/data/ table 5#
+new_data$Native.American[new_data$Native.American %in% "NSD"] <- "0"
+new_data[new_data == 0] <- NA
+new_data$Native.American <- as.numeric(new_data$Native.American)

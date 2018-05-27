@@ -1,35 +1,15 @@
-source("data_wrangling.R")
-
 server <- function(input, output) {
+  source("data_wrangling.R")
   
   
   # Server stuff
-  
-  ################## 
-  ### Question 1 ###
-  ##################
-  
-  
-  results_data1 <- reactive({
-    
-    results <- income_by_le[income_by_le$Year == input$year, ]
-    results
-    
-    
-  })
-  
-  results_data2 <- reactive({
-    results <- le_at_birth_race_long[le_at_birth_race_long$region == input$location, ]
-    results
-  })
-  
   output$plot1a <- renderPlot({
     
     plot1a <- ggplot(data = income_by_le) +
       geom_point(mapping = aes(x = Avg.Life.Expectancy.Years, y = median_income,  color = Race)) +
       labs(title = "Relationship Between Average Life Expectancy and Median Income",
            x = "Average Life Expectancy",
-           y = "Median Income") 
+           y = "Median Income")
     plot1a
   })
   
@@ -53,43 +33,53 @@ server <- function(input, output) {
     plot1c
   })
   
-  output$table1 <- renderDataTable({
-    get_result <- results_data1()
-    get_result
-  })
-  
-  ################## 
-  ### Question 2 ###
-  ##################
-  
   output$plot2 <- renderPlotly({
     
-    
-    plot2 <- ggplot(data = change) +
+    plot2 <- ggplot(data = new_data) +
       geom_polygon(aes(x = long, y = lat, group = group, fill =
-                         cut(new_data$African.American, breaks = 4))) +
-      scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0")
-    
+                         cut(new_data$White, seq(65, 90, by = 2), include.lowest = TRUE))) +
+      scale_fill_manual(values = c("#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
     plot2 + geom_point()
     ggplotly(plot2, tooltip="region")
   })
   
-  output$plot2b <- renderPlot({
+  output$plot3 <- renderPlotly({
     
-    ggplot(data = results_data2(), aes(x = Race, y = Life_Expectancy, color = Race)) +
-      geom_point(na.rm = TRUE) +
-      labs(title = "Relationship Between Race and Life Expectancy",
-           x = "Race",
-           y = "Life Expectancy")
-    
-    
+    plot3 <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, fill =
+                         cut(new_data$African.American, seq(65, 90, by = 2), include.lowest = TRUE))) +
+      scale_fill_manual(values = c("#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+    plot3 + geom_point()
+    ggplotly(plot3, tooltip="region")
   })
   
-  output$table2 <- renderDataTable({
-    results_data2()
+  output$plot4 <- renderPlotly({
+    
+    plot4 <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, fill =
+                         cut(new_data$Asian.American, seq(65, 90, by = 2), include.lowest = TRUE))) +
+      scale_fill_manual(values = c("#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+    plot4 + geom_point()
+    ggplotly(plot4, tooltip="region")
   })
   
+  output$plot5 <- renderPlotly({
+    
+    plot5 <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, fill =
+                         cut(new_data$Native.American, seq(65, 90, by = 2), include.lowest = TRUE))) +
+      scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+    plot5 + geom_point()
+    ggplotly(plot5, tooltip="region")
+  })
   
-  
-  
+  output$plot6 <- renderPlotly({
+    
+    plot6 <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, fill =
+                         cut(new_data$Latino, seq(65, 90, by = 2), include.lowest = TRUE))) +
+      scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+    plot6 + geom_point()
+    ggplotly(plot6, tooltip="region")
+  })
 }
