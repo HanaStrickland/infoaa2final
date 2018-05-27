@@ -1,6 +1,7 @@
+source("data_wrangling.R")
+
 
 ui <- fluidPage(
-  source("data_wrangling.R"),
   
   titlePanel("TITLE"),
   

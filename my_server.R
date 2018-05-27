@@ -1,5 +1,6 @@
+source("data_wrangling.R")
+
 server <- function(input, output) {
-  source("data_wrangling.R")
   
   
   # Server stuff
@@ -19,7 +20,7 @@ server <- function(input, output) {
   })
   
   results_data2 <- reactive({
-    results <- le_at_birth_race_long[le_at_birth_race_long$Location == input$location, ]
+    results <- le_at_birth_race_long[le_at_birth_race_long$region == input$location, ]
     results
   })
   
