@@ -19,9 +19,9 @@ ui <- fluidPage(
 
     tabsetPanel(
       tabPanel("Question 1", value=1, plotOutput("plot1a"),plotOutput("plot1b"), plotOutput("plot1c") ),
-      tabPanel("Question 2", value=2, conditionalPanel(condition="input.choice==1", plotlyOutput("plot2")),
-               conditionalPanel(condition="input.choice==2", plotlyOutput("plot3")),
-               conditionalPanel(condition="input.choice==3", plotlyOutput("plot4"))),
+      tabPanel("Question 2", value=2, conditionalPanel(condition="input.choice==1", plotlyOutput("plot2a")),
+               conditionalPanel(condition="input.choice==2", plotlyOutput("plot2b")),
+               conditionalPanel(condition="input.choice==3", plotlyOutput("plot2c"))),
 
       id = "tabselected"
       )

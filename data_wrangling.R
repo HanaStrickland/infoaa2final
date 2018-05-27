@@ -11,7 +11,7 @@ le_national <- as.data.frame(le_national)
 pct_insurance_by_race <- as.data.frame(pct_insurance_by_race)
 
 
-# Combine income and le dataframes
+# Combine income and le dataframes, get income_by_le
 income_black_white <- income_by_race %>%
   filter(Race %in% c("All Races", "White Alone", "Black Alone")) %>%
   select(Year, Race, median)
