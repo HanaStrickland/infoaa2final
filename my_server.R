@@ -61,20 +61,40 @@ server <- function(input, output) {
   ################## 
   ### Question 2 ###
   ##################
-  
-  output$plot2 <- renderPlotly({
 
-
-    plot2 <- ggplot(data = change) +
+  output$plot2a <- renderPlotly({
+    
+    race <- input$choice
+    
+    plot2a <- ggplot(data = new_data) +
       geom_polygon(aes(x = long, y = lat, group = group, fill =
-                         cut(new_data$African.American, breaks = 4))) +
-      scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0")
-
-    plot2 + geom_point()
-    ggplotly(plot2, tooltip="region")
+                         cut(new_data$race, breaks = 4))) +
+      scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0") 
+    plot2a + geom_point()
+    ggplotly(plot2a, tooltip="region")
   })
   
-  output$plot2b <- renderPlot({
+  # output$plot2b <- renderPlotly({
+  #   
+  #   plot2b <- ggplot(data = new_data) +
+  #     geom_polygon(aes(x = long, y = lat, group = group, fill =
+  #                        cut(new_data$African.American, breaks = 4))) +
+  #     scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0") 
+  #   plot2b + geom_point()
+  #   ggplotly(plot2b, tooltip="region")
+  # })
+  # 
+  # output$plot2c <- renderPlotly({
+  #   
+  #   plot2c <- ggplot(data = new_data) +
+  #     geom_polygon(aes(x = long, y = lat, group = group, fill =
+  #                        cut(new_data$Asian.American, breaks = 4))) +
+  #     scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0") 
+  #   plot2c + geom_point()
+  #   ggplotly(plot2c, tooltip="region")
+  # })
+  
+  output$plot2d <- renderPlot({
 
     ggplot(data = results_data2(), aes(x = Race, y = Life_Expectancy, color = Race)) +
       geom_point(na.rm = TRUE) +
@@ -89,14 +109,9 @@ server <- function(input, output) {
     results_data2()
   })
   
-  
-  
-  
 }
-
-
-
-
+  
+  
 
 
 

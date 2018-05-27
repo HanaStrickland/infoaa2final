@@ -13,7 +13,8 @@ pct_insurance_by_race <- as.data.frame(pct_insurance_by_race)
 ################## 
 ### Question 1 ###
 ##################
-# Combine income and le dataframes
+
+# Combine income and le dataframes, get income_by_le
 income_black_white <- income_by_race %>%
   filter(Race %in% c("All Races", "White Alone", "Black Alone")) %>%
   select(Year, Race, median)
@@ -87,10 +88,12 @@ new_data <- left_join(state_data, le_at_birth_race)
 new_data$African.American[new_data$African.American %in% "NSD"] <- "0"
 new_data[new_data == 0] <- NA
 new_data$African.American <- as.numeric(new_data$African.American)
-change <- new_data %>%
-  mutate(cut(new_data$African.American, breaks = 4))
 
-# plot 2b
+new_data$Asian.American[new_data$Asian.American %in% "NSD"] <- "0"
+new_data[new_data == 0] <- NA
+new_data$Asian.American <- as.numeric(new_data$Asian.American)
+
+# plot 2d
 le_at_birth_race_long <- le_at_birth_race %>% 
   filter(region != "United States") %>% 
   gather(key = "Race",
