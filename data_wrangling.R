@@ -11,6 +11,9 @@ le_national <- as.data.frame(le_national)
 pct_insurance_by_race <- as.data.frame(pct_insurance_by_race)
 
 
+################## 
+### Question 1 ###
+##################
 # Combine income and le dataframes
 income_black_white <- income_by_race %>%
   filter(Race %in% c("All Races", "White Alone", "Black Alone")) %>%
@@ -35,7 +38,9 @@ income_by_le
 
 
 
-
+################## 
+### Question 2 ###
+##################
 #find life expectancy per state for African Americans
 
 le_at_birth_race <- le_at_birth_race %>%

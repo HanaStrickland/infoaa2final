@@ -4,15 +4,9 @@ server <- function(input, output) {
   
   
   # Server stuff
-  output$plot1a <- renderPlot({
-    
-    plot1a <- ggplot(data = income_by_le) +
-      geom_point(mapping = aes(x = Avg.Life.Expectancy.Years, y = median_income,  color = Race)) +
-      labs(title = "Relationship Between Average Life Expectancy and Median Income",
-           x = "Average Life Expectancy",
-           y = "Median Income")
-    plot1a
-  })
+  ################## 
+  ### Question 1 ###
+  ##################
   
   output$plot1b <- renderPlot({
     
@@ -34,11 +28,15 @@ server <- function(input, output) {
     plot1c
   })
   
+  
+  ################## 
+  ### Question 2 ###
+  ##################
   output$plot2white <- renderPlotly({
-    
+
     plot2white <- ggplot(data = new_data) +
-      geom_polygon(aes(x = long, y = lat, group = group, 
-                       fill = cut(new_data$White, seq(65, 90, by = 2), include.lowest = TRUE))) +
+      geom_polygon(aes(x = long, y = lat, group = group,
+                       fill = cut(new_data$White, seq(60, 90, by = 2), include.lowest = FALSE))) +
       scale_fill_manual(values = c("#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
     plot2white + geom_point()
     ggplotly(plot2white, tooltip="region")
@@ -48,7 +46,7 @@ server <- function(input, output) {
     
     plot2afa <- ggplot(data = new_data) +
       geom_polygon(aes(x = long, y = lat, group = group, 
-                       fill = cut(new_data$African.American, seq(65, 90, by = 2), include.lowest = TRUE))) +
+                       fill = cut(new_data$African.American, seq(60, 90, by = 2), include.lowest = FALSE))) +
       scale_fill_manual(values = c("#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
     plot2afa + geom_point()
     ggplotly(plot2afa, tooltip="region")
@@ -58,7 +56,7 @@ server <- function(input, output) {
     
     plot2asa <- ggplot(data = new_data) +
       geom_polygon(aes(x = long, y = lat, group = group, 
-                       fill = cut(new_data$Asian.American, seq(65, 90, by = 2), include.lowest = TRUE))) +
+                       fill = cut(new_data$Asian.American, seq(60, 90, by = 2), include.lowest = FALSE))) +
       scale_fill_manual(values = c("#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
     plot2asa + geom_point()
     ggplotly(plot2asa, tooltip="region")
@@ -68,7 +66,7 @@ server <- function(input, output) {
     
     plot2na <- ggplot(data = new_data) +
       geom_polygon(aes(x = long, y = lat, group = group, fill =
-                         cut(new_data$Native.American, seq(65, 90, by = 2), include.lowest = TRUE))) +
+                         cut(new_data$Native.American, seq(60, 90, by = 2), include.lowest = FALSE))) +
       scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
     plot2na + geom_point()
     ggplotly(plot2na, tooltip="region")
@@ -78,7 +76,7 @@ server <- function(input, output) {
     
     plot2lat <- ggplot(data = new_data) +
       geom_polygon(aes(x = long, y = lat, group = group, fill =
-                         cut(new_data$Latino, seq(65, 90, by = 2), include.lowest = TRUE))) +
+                         cut(new_data$Latino, seq(60, 90, by = 2), include.lowest = FALSE))) +
       scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
     plot2lat + geom_point()
     ggplotly(plot2lat, tooltip="region")
