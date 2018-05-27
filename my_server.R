@@ -42,8 +42,27 @@ server <- function(input, output) {
     plot2 + geom_point()
     ggplotly(plot2, tooltip="region")
   })
+  
+  
+  output$plot4a <- renderPlot({
+    hcmap("countries/us/us-all", data = le_state_2009, value = "avg.life.expectancy",
+          joinBy = c("name", "State"), name = "Life Expectancy (in years)",
+          dataLabels = list(enabled = TRUE, format = "{point.name}"),
+          borderColor = "#FAFAFA", borderWidth = 0.1,
+          tooltip = list(valueDecimals = 2, valueSuffix = " years"))
+  })
+  
+  output$plot4b <- renderPlot({
+    trend_plot <- ggplot(trend, aes(x = State, y = avg.life.expectancy, color = State)) +
+      geom_point(shape = 11) + theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+    trend_plot <- ggplotly(trend_plot) + labs(
+      title = "Life Expectancy Change From 1987 to 2009",
+      x = "States",
+      y = "Change in Life Expectancy")
+    trend_plot
+  })
+  
 }
-
 
 
 

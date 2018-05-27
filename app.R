@@ -5,6 +5,9 @@ library(tidyr)
 library("readxl")
 library(shiny)
 library(plotly)
+library(highcharter)
+library(magrittr)
+
 
 
 source("my_ui.R")
