@@ -33,34 +33,54 @@ server <- function(input, output) {
     plot1c
   })
   
-  output$plot2a <- renderPlotly({
+  output$plot2white <- renderPlotly({
     
-    plot2a <- ggplot(data = new_data) +
-      geom_polygon(aes(x = long, y = lat, group = group, fill =
-                         cut(new_data$White, breaks = 4))) +
-      scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0") 
-    plot2a + geom_point()
-    ggplotly(plot2a, tooltip="region")
+    plot2white <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, 
+                       fill = cut(new_data$White, seq(65, 90, by = 2), include.lowest = TRUE))) +
+      scale_fill_manual(values = c("#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+    plot2white + geom_point()
+    ggplotly(plot2white, tooltip="region")
   })
   
-  output$plot2b <- renderPlotly({
+  output$plot2afa <- renderPlotly({
     
-    plot2b <- ggplot(data = new_data) +
-      geom_polygon(aes(x = long, y = lat, group = group, fill =
-                         cut(new_data$African.American, breaks = 4))) +
-      scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0") 
-    plot2b + geom_point()
-    ggplotly(plot2b, tooltip="region")
+    plot2afa <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, 
+                       fill = cut(new_data$African.American, seq(65, 90, by = 2), include.lowest = TRUE))) +
+      scale_fill_manual(values = c("#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+    plot2afa + geom_point()
+    ggplotly(plot2afa, tooltip="region")
   })
   
-  output$plot2c <- renderPlotly({
+  output$plot2asa <- renderPlotly({
     
-    plot2c <- ggplot(data = new_data) +
+    plot2asa <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, 
+                       fill = cut(new_data$Asian.American, seq(65, 90, by = 2), include.lowest = TRUE))) +
+      scale_fill_manual(values = c("#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+    plot2asa + geom_point()
+    ggplotly(plot2asa, tooltip="region")
+  })
+  
+  output$plot2na <- renderPlotly({
+    
+    plot2na <- ggplot(data = new_data) +
       geom_polygon(aes(x = long, y = lat, group = group, fill =
-                         cut(new_data$Asian.American, breaks = 4))) +
-      scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0") 
-    plot2c + geom_point()
-    ggplotly(plot2c, tooltip="region")
+                         cut(new_data$Native.American, seq(65, 90, by = 2), include.lowest = TRUE))) +
+      scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+    plot2na + geom_point()
+    ggplotly(plot2na, tooltip="region")
+  })
+  
+  output$plot2lat <- renderPlotly({
+    
+    plot2lat <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, fill =
+                         cut(new_data$Latino, seq(65, 90, by = 2), include.lowest = TRUE))) +
+      scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+    plot2lat + geom_point()
+    ggplotly(plot2lat, tooltip="region")
   })
 }
 
