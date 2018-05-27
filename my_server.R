@@ -4,12 +4,12 @@ server <- function(input, output) {
   
   # Server stuff
   output$plot1a <- renderPlot({
-
+    
     plot1a <- ggplot(data = income_by_le) +
       geom_point(mapping = aes(x = Avg.Life.Expectancy.Years, y = median_income,  color = Race)) +
       labs(title = "Relationship Between Average Life Expectancy and Median Income",
-            x = "Average Life Expectancy",
-            y = "Median Income")
+           x = "Average Life Expectancy",
+           y = "Median Income")
     plot1a
   })
   
@@ -83,6 +83,5 @@ server <- function(input, output) {
     ggplotly(plot2lat, tooltip="region")
   })
 }
-
 
 
