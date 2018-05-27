@@ -16,9 +16,7 @@ ui <- fluidPage(
     
   ),
   mainPanel(
-    # recommend review the syntax for tabsetPanel() & tabPanel() for better understanding
-    # id argument is important in the tabsetPanel()
-    # value argument is important in the tabPanle()
+
     tabsetPanel(
       tabPanel("Question 1", value=1, plotOutput("plot1a"),plotOutput("plot1b"), plotOutput("plot1c") ),
       tabPanel("Question 2", value=2, conditionalPanel(condition="input.choice==1", plotlyOutput("plot2")),
