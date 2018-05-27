@@ -47,8 +47,10 @@ new_data <- left_join(state_data, le_at_birth_race)
 new_data$African.American[new_data$African.American %in% "NSD"] <- "0"
 new_data[new_data == 0] <- NA
 new_data$African.American <- as.numeric(new_data$African.American)
-change <- new_data %>%
-  mutate(cut(new_data$African.American, breaks = 4))
+
+new_data$Asian.American[new_data$Asian.American %in% "NSD"] <- "0"
+new_data[new_data == 0] <- NA
+new_data$Asian.American <- as.numeric(new_data$Asian.American)
 
 
 #le_by_state source

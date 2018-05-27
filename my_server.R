@@ -35,19 +35,34 @@ server <- function(input, output) {
   
   output$plot2 <- renderPlotly({
     
-    plot2 <- ggplot(data = change) +
+    plot2 <- ggplot(data = new_data) +
       geom_polygon(aes(x = long, y = lat, group = group, fill =
-                         cut(new_data$African.American, breaks = 4))) +
+                         cut(new_data$White, breaks = 4))) +
       scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0") 
     plot2 + geom_point()
     ggplotly(plot2, tooltip="region")
   })
+  
+  output$plot3 <- renderPlotly({
+    
+    plot3 <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, fill =
+                         cut(new_data$African.American, breaks = 4))) +
+      scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0") 
+    plot3 + geom_point()
+    ggplotly(plot3, tooltip="region")
+  })
+  
+  output$plot4 <- renderPlotly({
+    
+    plot4 <- ggplot(data = new_data) +
+      geom_polygon(aes(x = long, y = lat, group = group, fill =
+                         cut(new_data$Asian.American, breaks = 4))) +
+      scale_fill_manual(values = c("#dd3497", "#ae017e", "#7a0177", "#49006a"), na.value = "#f0f0f0") 
+    plot4 + geom_point()
+    ggplotly(plot4, tooltip="region")
+  })
 }
-
-
-
-
-
 
 
 
