@@ -4,6 +4,7 @@ library(plotly)
 library(ggplot2)
 library(magrittr)
 
+
 #reading in data from IHME US State Life Expectancy csv File
 life_expectancy <- read.csv("data/IHME_US_STATE_LIFE_EXPECTANCY_1987_2009_lowercase_Q4.csv", stringsAsFactors = FALSE)
 le_state <- as.data.frame(life_expectancy)
@@ -63,5 +64,5 @@ trend_plot <- ggplot(trend, aes(x = State, y = avg.life.expectancy, color = Stat
 trend_plot <- ggplotly(trend_plot) + labs(
   title = "Life Expectancy Change From 1987 to 2009",
   x = "States",
-  y = "Change in Life Expectancy")
+  y = "Change in Life Expectancy (in years)")
 trend_plot
