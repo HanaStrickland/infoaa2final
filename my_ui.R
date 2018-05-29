@@ -10,18 +10,18 @@ ui <- fluidPage(
       condition = "input.tabselected==2",
       selectInput("location", label = "Select Location (for Plot 2)", choices = locations),
       radioButtons("choice", "Choose a Race", choices = c(
-        "Caucasian" = 1,
+        "White" = 1,
         "African American" = 2,
         "Asian American" = 3,
         "Native American" = 4,
-        "Latino" = 5,
-        "All" = 6
+        "Latino" = 5
       ))
     ),
 
     conditionalPanel(
       condition = "input.tabselected==3",
       radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3))
+
     )
   ),
   mainPanel(
@@ -35,21 +35,15 @@ ui <- fluidPage(
 
 
       # Question 2 Plots
-      tabPanel("Question 2",
-        value = 2,
-        dataTableOutput("table2"),
-        
-        conditionalPanel(condition = "input.choice==1", plotlyOutput("plot2white")),
-        conditionalPanel(condition = "input.choice==2", plotlyOutput("plot2afa")),
-        conditionalPanel(condition = "input.choice==3", plotlyOutput("plot2asa")),
-        conditionalPanel(condition = "input.choice==4", plotlyOutput("plot2na")),
-        conditionalPanel(condition = "input.choice==5", plotlyOutput("plot2lat"))),
       
-      #   conditionalPanel(condition = "input.choice==6", 
-      #     plotlyOutput("plot2white"),
-      #     plotlyOutput("plot2afa")
-      #     
-      # )),
+      tabPanel("Question 2", value=2, align = "center",
+               dataTableOutput("table2"),
+               conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", width = "887px", height = "591px")),
+               conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa", width = "887px", height = "591px")),
+               conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa", width = "887px", height = "591px")),
+               conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na", width = "887px", height = "591px")),
+               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", width = "887px", height = "591px"))),
+
 
 
 

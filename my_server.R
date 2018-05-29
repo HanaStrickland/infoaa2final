@@ -67,20 +67,22 @@ server <- function(input, output) {
   
   
   output$table2 <- renderDataTable({
-    results_data2()
+    get_result <- results_data2()
+    get_result
+    
   })
   
   
   output$plot2white <- renderPlotly({
-
+    
     plot2white <- ggplot(data = new_data) +
 
       geom_polygon(aes(x = long, y = lat, group = group, 
-                       fill = cut(new_data$White, seq(65, 90, by = 2.5), include.lowest = TRUE))) +
+                       fill = cut(new_data$White, seq(65, 90, by = 2.5), include.lowest = TRUE), label = region)) +
       scale_fill_manual(name = "Age Range", values = c("#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8"), na.value = "#636363") +
       labs(title = "Life Expectancies for Caucasians in 2008") +
-      theme_hc() + theme(
-        plot.title = element_text(color = '#02818a', size = 14, face = 'bold'),
+      theme_light() + theme(
+        plot.title = element_text(color = '#02818a', size = 14,  face = 'bold'),
         axis.title.x = element_text(color = '#bfd3e6', size = 10, face = 'bold.italic'),
         axis.title.y = element_text(color = '#bfd3e6', size = 10, face = 'bold.italic') 
       )
@@ -92,11 +94,11 @@ server <- function(input, output) {
     
     plot2afa <- ggplot(data = new_data) +
       geom_polygon(aes(x = long, y = lat, group = group, 
- 
-                       fill = cut(new_data$African.American, seq(65, 90, by = 2.5), include.lowest = TRUE))) +
+
+                       fill = cut(new_data$African.American, seq(65, 90, by = 2.5), include.lowest = TRUE), label = region)) +
       scale_fill_manual(name = "Age Range", values = c("#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4"), na.value = "#636363") +
       labs(title = "Life Expectancies for Afican Americans in 2008") +
-      theme_hc() + theme(
+      theme_light() + theme(
         plot.title = element_text(color = '#02818a', size = 14, face = 'bold'),
         axis.title.x = element_text(color = '#bfd3e6', size = 10, face = 'bold.italic'),
         axis.title.y = element_text(color = '#bfd3e6', size = 10, face = 'bold.italic') 
@@ -112,7 +114,8 @@ server <- function(input, output) {
                        fill = cut(new_data$Asian.American, seq(65, 90, by = 2.5), include.lowest = TRUE))) +
       scale_fill_manual(name = "Age Range", values = c("#225ea8", "#253494", "#081d58"), na.value = "#636363") +
       labs(title = "Life Expectancies for Asian Americans in 2008") +
-      theme_hc() + theme(
+
+      theme_light() + theme(
         plot.title = element_text(color = '#02818a', size = 14, face = 'bold'),
         axis.title.x = element_text(color = '#bfd3e6', size = 10, face = 'bold.italic'),
         axis.title.y = element_text(color = '#bfd3e6', size = 10, face = 'bold.italic') 
@@ -128,7 +131,8 @@ server <- function(input, output) {
                          cut(new_data$Native.American, seq(65, 90, by = 2.5), include.lowest = TRUE))) +
       scale_fill_manual(name = "Age Range", values = c("#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#1d91c0"), na.value = "#636363")  + 
       labs(title = "Life Expectancies for Native Americans in 2008") +
-      theme_hc() + theme(
+
+      theme_light() + theme(
         plot.title = element_text(color = '#02818a', size = 14, face = 'bold'),
         axis.title.x = element_text(color = '#bfd3e6', size = 10, face = 'bold.italic'),
         axis.title.y = element_text(color = '#bfd3e6', size = 10, face = 'bold.italic') 
@@ -141,11 +145,10 @@ server <- function(input, output) {
     
     plot2lat <- ggplot(data = new_data) +
       geom_polygon(aes(x = long, y = lat, group = group, fill =
-
                          cut(new_data$Latino, seq(65, 90, by = 2.5), include.lowest = TRUE))) + 
       scale_fill_manual(name = "Age Range", values = c("#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"), na.value = "#636363") +
       labs(title = "Life Expectancies for Latinos in 2008") +
-      theme_hc() + theme(
+      theme_light() + theme(
         plot.title = element_text(color = '#02818a', size = 14, face = 'bold'),
         axis.title.x = element_text(color = '#bfd3e6', size = 10, face = 'bold.italic'),
         axis.title.y = element_text(color = '#bfd3e6', size = 10, face = 'bold.italic') 
