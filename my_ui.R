@@ -3,9 +3,12 @@ ui <- fluidPage(
   sidebarPanel(
 
     ## conditionalPanel() functions for selected tab
-    conditionalPanel(condition = "input.tabselected==1"),
+    conditionalPanel(condition = "input.tabselected==1",
+                     selectInput("year", label = "Select Year for Table", choices = years)
+    ),
     conditionalPanel(
       condition = "input.tabselected==2",
+      selectInput("location", label = "Select Location (for Plot 2)", choices = locations),
       radioButtons("choice", "Choose a Race", choices = c(
         "Caucasian" = 1,
         "African American" = 2,
@@ -25,7 +28,6 @@ ui <- fluidPage(
  
     tabsetPanel(
       tabPanel("Question 1", value = 1, 
-               selectInput("year", label = "Select Year for Table", choices = years),
                htmlOutput("q1_analysis"),
                dataTableOutput("table1"),
                plotOutput("plot1b"), 
@@ -35,7 +37,6 @@ ui <- fluidPage(
       # Question 2 Plots
       tabPanel("Question 2",
         value = 2,
-        selectInput("location", label = "Select Location (for Plot 2)", choices = locations),
         dataTableOutput("table2"),
         
         conditionalPanel(condition = "input.choice==1", plotlyOutput("plot2white")),
