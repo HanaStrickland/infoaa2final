@@ -35,7 +35,37 @@ income_black_white <- gather(income_black_white_wide_median,
 income_by_le <- left_join(income_black_white, le_black_white, by = c("Year", "Race"))
 income_by_le
 
+# Get correlation
 
+avg_median_income_black <- sum(income_black_white_wide_median$Black) / nrow(income_black_white_wide_median)
+
+avg_median_income_white <- sum(income_black_white_wide_median$White) / nrow(income_black_white_wide_median)
+
+avg_median_income_all <- sum(income_black_white_wide_median$`All Races`) / nrow(income_black_white_wide_median)
+
+le_black <- income_by_le %>% 
+  filter(Race == "Black") %>% 
+  select(Avg.Life.Expectancy.Years) 
+
+avg_le_black <- sum(le_black, na.rm = TRUE) / (nrow(le_black) - 2)
+
+le_white <- income_by_le %>% 
+  filter(Race == "White") %>% 
+  select(Avg.Life.Expectancy.Years) 
+
+avg_le_white <- sum(le_white, na.rm = TRUE) / (nrow(le_white) - 2)
+
+le_all <- income_by_le %>% 
+  filter(Race == "All Races") %>% 
+  select(Avg.Life.Expectancy.Years) 
+
+avg_le_all <- sum(le_all, na.rm = TRUE) / (nrow(le_all) - 2)
+
+average_medians <- c(avg_median_income_black, avg_median_income_white, avg_median_income_all)
+average_les <- c(avg_le_black, avg_le_white, avg_le_all)
+
+
+correlation_income_le_race <- cor(average_medians, average_les) #0.9985999
 
 ################## 
 ### Question 2 ###
