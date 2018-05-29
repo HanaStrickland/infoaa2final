@@ -26,12 +26,12 @@ ui <- fluidPage(
                plotOutput("plot1c")),
       
       # Question 2 Plots
-      tabPanel("Question 2", value=2, 
-               conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white")),
-               conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa")),
-               conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa")),
-               conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na")),
-               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat"))),
+      tabPanel("Question 2", value=2, align = "center",
+               conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", width = "887px", height = "591px")),
+               conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa", width = "887px", height = "591px")),
+               conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa", width = "887px", height = "591px")),
+               conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na", width = "887px", height = "591px")),
+               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", width = "887px", height = "591px"))),
                
       
       # Question 3 Plots
