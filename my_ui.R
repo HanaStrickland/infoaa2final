@@ -27,8 +27,7 @@ ui <- fluidPage(
                conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na", width = "887px", height = "591px")),
-               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", width = "887px", height = "591px")),
-               conditionalPanel(condition="input.choice==6", plotlyOutput("plot2lat", width = "887px", height = "591px"))),
+               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", width = "887px", height = "591px"))),
       
       id = "tabselected"
     )
