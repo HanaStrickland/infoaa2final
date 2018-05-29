@@ -5,7 +5,7 @@ ui <- fluidPage(
     ## conditionalPanel() functions for selected tab
     conditionalPanel(condition = "input.tabselected==1"),
     conditionalPanel(condition = "input.tabselected==2",
-                     radioButtons("choice","Choose a Race", choices = c("White" = 1,
+                     radioButtons("choice","Choose a Race", choices = c("Caucasian" = 1,
                                                                         "African American" = 2,
                                                                         "Asian American" = 3,
                                                                         "Native American" = 4,
