@@ -265,6 +265,16 @@ server <- function(input, output) {
     trend_plot <- ggplotly(trend_plot)
     trend_plot
   })
+  
+  output$map1q4 <- renderHighchart({
+    map_1987 <- hcmap("countries/us/us-all", data = le_state_1987, value = "avg.life.expectancy",
+                      joinBy = c("name", "State"), name = "Life Expectancy (in years)",
+                      dataLabels = list(enabled = TRUE, format = "{point.name}"),
+                      borderColor = "#FAFAFA", borderWidth = 0.1,
+                      tooltip = list(valueDecimals = 2, valueSuffix = " years"))
+    
+    map_1987
+  })
 }
 
 
