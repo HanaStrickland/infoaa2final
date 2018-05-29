@@ -14,6 +14,7 @@ ui <- fluidPage(
                  
                ),
                mainPanel(
+                 htmlOutput("q1_analysis"),
                          plotOutput("plot1b"), 
                          plotOutput("plot1c"),
                          dataTableOutput("table1"))
