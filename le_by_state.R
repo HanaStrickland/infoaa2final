@@ -60,11 +60,11 @@ trend <- trend %>% select(State, avg.life.expectancy)
 trend <- unique(trend)
 
 #plotting data that shows the trend of life expectancy for each state from 1987 to 2009
-set.seed(955)
-trend_plot <- ggplot(trend, aes(x = State, y = avg.life.expectancy, color = State)) +
-  geom_point(shape = 11) + theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
-trend_plot <- ggplotly(trend_plot) + labs(
-  title = "Life Expectancy Change From 1987 to 2009",
-  x = "States",
-  y = "Change in Life Expectancy (in years)")
-trend_plot
+#set.seed(955)
+#trend_plot <- ggplot(trend, aes(x = State, y = avg.life.expectancy, color = State)) +
+ # geom_point(shape = 11) + theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+#trend_plot <- ggplotly(trend_plot) + labs(
+ # title = "Life Expectancy Change From 1987 to 2009",
+  #x = "States",
+  #y = "Change in Life Expectancy (in years)")
+#trend_plot

@@ -6,6 +6,7 @@ library("readxl")
 library(shiny)
 library(plotly)
 library(ggthemes)
+library(highcharter)
 
 
 source("my_ui.R")
