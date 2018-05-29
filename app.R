@@ -12,9 +12,3 @@ source("my_server.R")
 
 
 shinyApp(ui, server)
-
-
-
-
-
-
