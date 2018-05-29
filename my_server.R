@@ -115,6 +115,9 @@ server <- function(input, output) {
     ggplotly(plot2lat, tooltip="region")
   })
   
+  ################## 
+  ### Question 3 ###
+  ##################
   # Question 3 Plots - Sebastian
   output$plot3a <- renderPlot({
     
