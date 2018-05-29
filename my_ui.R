@@ -24,17 +24,26 @@ ui <- fluidPage(
   mainPanel(
  
     tabsetPanel(
-      tabPanel("Question 1", value = 1, plotOutput("plot1b"), plotOutput("plot1c")),
+      tabPanel("Question 1", value = 1, 
+               selectInput("year", label = "Select Year for Table", choices = years),
+               htmlOutput("q1_analysis"),
+               dataTableOutput("table1"),
+               plotOutput("plot1b"), 
+               plotOutput("plot1c")),
 
 
       # Question 2 Plots
       tabPanel("Question 2",
         value = 2,
+        selectInput("location", label = "Select Location (for Plot 2)", choices = locations),
+        dataTableOutput("table2"),
+        
         conditionalPanel(condition = "input.choice==1", plotlyOutput("plot2white")),
         conditionalPanel(condition = "input.choice==2", plotlyOutput("plot2afa")),
         conditionalPanel(condition = "input.choice==3", plotlyOutput("plot2asa")),
         conditionalPanel(condition = "input.choice==4", plotlyOutput("plot2na")),
         conditionalPanel(condition = "input.choice==5", plotlyOutput("plot2lat"))),
+      
       #   conditionalPanel(condition = "input.choice==6", 
       #     plotlyOutput("plot2white"),
       #     plotlyOutput("plot2afa")
@@ -59,3 +68,4 @@ ui <- fluidPage(
     )
   )
 )
+

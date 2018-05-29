@@ -8,6 +8,38 @@ server <- function(input, output) {
   ### Question 1 ###
   ##################
   
+  results_data1 <- reactive({
+    
+    results <- income_by_le[income_by_le$Year == input$year, ]
+    results
+    
+    
+  })
+  
+  results_data2 <- reactive({
+    results <- le_at_birth_race_long[le_at_birth_race_long$region == input$location, ]
+    results
+  })
+  
+  
+  output$q1_analysis <- renderUI({
+    p("Black people in the US have a significantly lower median income and 
+                              life expectancy than white people and all races. White people in the US 
+                              have a slightly higher median income and life expectancy than all races. 
+                              If we compare trends over time, there does not seem to be a correlation 
+                              between median income and average life expectancy. Average life expectancy 
+                              seemed to to be increasing over time at a decelerating rate while median 
+                              income dipped after 2008 and slowly increased. However, we should note that 
+                              average life expectancy overall seems to be correlated with median income. 
+                              The races from lowest to highest average life expectancy are Black, All 
+                              races, and White. This is the same order for median income.")
+  })
+  
+  output$table1 <- renderDataTable({
+    get_result <- results_data1()
+    get_result
+  })
+  
   output$plot1b <- renderPlot({
     
     plot1b <- ggplot(data = income_by_le) +
@@ -32,6 +64,13 @@ server <- function(input, output) {
   ################## 
   ### Question 2 ###
   ##################
+  
+  
+  output$table2 <- renderDataTable({
+    results_data2()
+  })
+  
+  
   output$plot2white <- renderPlotly({
 
     plot2white <- ggplot(data = new_data) +

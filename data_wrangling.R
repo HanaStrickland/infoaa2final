@@ -63,3 +63,13 @@ new_data$Latino <- as.numeric(new_data$Latino)
 new_data$Native.American[new_data$Native.American %in% "NSD"] <- "0"
 new_data[new_data == 0] <- NA
 new_data$Native.American <- as.numeric(new_data$Native.American)
+
+# plot 2b
+le_at_birth_race_long <- le_at_birth_race %>% 
+  filter(region != "United States") %>% 
+  gather(key = "Race",
+         value = "Life_Expectancy", "White", "African.American", "Latino", "Asian.American",  
+         "Native.American")
+
+locations <- unique(le_at_birth_race_long$region)
+
