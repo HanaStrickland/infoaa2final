@@ -1,5 +1,8 @@
+source("data_wrangling.R")
+source("data_processing.R")
 
 ui <- fluidPage(
+  
   sidebarPanel(
 
     ## conditionalPanel() functions for selected tab
@@ -28,7 +31,21 @@ ui <- fluidPage(
  
     tabsetPanel(
       tabPanel("Question 1", value = 1, 
-               htmlOutput("q1_analysis"),
+               p("Black people in the US have a significantly lower median income and 
+                              life expectancy than white people and all races. White people in the US 
+                 have a slightly higher median income and life expectancy than all races. 
+                 If we compare trends over time, there does not seem to be a correlation 
+                 between median income and average life expectancy. Average life expectancy 
+                 seemed to to be increasing over time at a decelerating rate while median 
+                 income dipped after 2008 and slowly increased. However, we should note that 
+                 average life expectancy overall seems to be correlated with median income. 
+                 The races from lowest to highest average life expectancy are Black, All 
+                 races, and White. This is the same order for median income."),
+               p("The data use to create these visuals comes from the ",
+               a("National Center for Health Statistics", href="https://data.cdc.gov/NCHS/NCHS-Death-rates-and-life-expectancy-at-birth/w9j2-ggv5/data"),
+               "and the ",
+               a("United States Census", href="https://www.census.gov/data/tables/2017/demo/income-poverty/p60-259.html")),
+               
                dataTableOutput("table1"),
                plotlyOutput("plotly1b"),
                plotlyOutput("plotly1c")),

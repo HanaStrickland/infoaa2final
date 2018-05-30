@@ -21,20 +21,7 @@ server <- function(input, output) {
     results
   })
   
-  
-  output$q1_analysis <- renderUI({
-    p("Black people in the US have a significantly lower median income and 
-                              life expectancy than white people and all races. White people in the US 
-                              have a slightly higher median income and life expectancy than all races. 
-                              If we compare trends over time, there does not seem to be a correlation 
-                              between median income and average life expectancy. Average life expectancy 
-                              seemed to to be increasing over time at a decelerating rate while median 
-                              income dipped after 2008 and slowly increased. However, we should note that 
-                              average life expectancy overall seems to be correlated with median income. 
-                              The races from lowest to highest average life expectancy are Black, All 
-                              races, and White. This is the same order for median income.")
-  })
-  
+
   output$table1 <- renderDataTable({
     get_result <- results_data1()
     get_result

@@ -35,6 +35,10 @@ income_black_white <- gather(income_black_white_wide_median,
 income_by_le <- left_join(income_black_white, le_black_white, by = c("Year", "Race"))
 income_by_le
 
+
+years <- unique(income_by_le$Year)
+
+
 # Get correlation
 
 avg_median_income_black <- sum(income_black_white_wide_median$Black) / nrow(income_black_white_wide_median)
