@@ -41,10 +41,17 @@ ui <- fluidPage(
                conditionalPanel(condition="input.choice2==3", plotlyOutput("plot3ch")),
                plotOutput("plot3a"), plotOutput("plot3b")),
       
+      # Question 3 Visualizations
+        tabPanel("Question 4", value=4,
+                 #plotOutput(map_1987),
+                 #plotOutput(map_2009),
+                 plotlyOutput("plot4")),
+                highchartOutput("map1q4", width = "100%", height = "500px")
+        ),
+      
       id = "tabselected"
     )
   )
-)
 
 
 

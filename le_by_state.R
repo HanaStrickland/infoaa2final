@@ -26,11 +26,13 @@ le_state_1987 <- mutate(le_state_1987, avg.life.expectancy = (Male.life.expectan
                           Female.life.expectancy..years.) / 2)
 
 #map shows LE for each state in year 1987
-hcmap("countries/us/us-all", data = le_state_1987, value = "avg.life.expectancy",
+map_1987 <- hcmap("countries/us/us-all", data = le_state_1987, value = "avg.life.expectancy",
       joinBy = c("name", "State"), name = "Life Expectancy (in years)",
       dataLabels = list(enabled = TRUE, format = "{point.name}"),
       borderColor = "#FAFAFA", borderWidth = 0.1,
       tooltip = list(valueDecimals = 2, valueSuffix = " years"))
+
+map_1987
 
 #filtering for all state data in year 2009
 le_state_2009 <- le_state %>% 
@@ -43,11 +45,13 @@ le_state_2009 <- mutate(le_state_2009, avg.life.expectancy = (Male.life.expectan
                                                                 Female.life.expectancy..years.) / 2)
 
 #map shows LE for each state in year 2009
-hcmap("countries/us/us-all", data = le_state_2009, value = "avg.life.expectancy",
-      joinBy = c("name", "State"), name = "Life Expectancy (in years)",
-      dataLabels = list(enabled = TRUE, format = "{point.name}"),
-      borderColor = "#FAFAFA", borderWidth = 0.1,
-      tooltip = list(valueDecimals = 2, valueSuffix = " years"))
+# map_2009 <- hcmap("countries/us/us-all", data = le_state_2009, value = "avg.life.expectancy",
+#       joinBy = c("name", "State"), name = "Life Expectancy (in years)",
+#       dataLabels = list(enabled = TRUE, format = "{point.name}"),
+#       borderColor = "#FAFAFA", borderWidth = 0.1,
+#       tooltip = list(valueDecimals = 2, valueSuffix = " years"))
+# 
+# map_2009
 
 #dataframe contains the trend between 1987-2009
 trend <- le_state %>% 
@@ -58,11 +62,11 @@ trend <- trend %>% select(State, avg.life.expectancy)
 trend <- unique(trend)
 
 #plotting data that shows the trend of life expectancy for each state from 1987 to 2009
-set.seed(955)
-trend_plot <- ggplot(trend, aes(x = State, y = avg.life.expectancy, color = State)) +
-  geom_point(shape = 11) + theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
-trend_plot <- ggplotly(trend_plot) + labs(
-  title = "Life Expectancy Change From 1987 to 2009",
-  x = "States",
-  y = "Change in Life Expectancy (in years)")
-trend_plot
+#set.seed(955)
+#trend_plot <- ggplot(trend, aes(x = State, y = avg.life.expectancy, color = State)) +
+ # geom_point(shape = 11) + theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+#trend_plot <- ggplotly(trend_plot) + labs(
+ # title = "Life Expectancy Change From 1987 to 2009",
+  #x = "States",
+  #y = "Change in Life Expectancy (in years)")
+#trend_plot

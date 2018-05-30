@@ -1,3 +1,5 @@
+
+
 server <- function(input, output) {
   source("data_wrangling.R")
   source("data_processing.R")
@@ -249,6 +251,29 @@ server <- function(input, output) {
     plot3ch + geom_point()
     ggplotly(plot3ch, tooltip="region")
     plot3ch
+  })
+  
+  output$plot4 <- renderPlotly({
+    set.seed(955)
+    trend_plot <- ggplot(data = trend, aes(x = State, y = avg.life.expectancy, color = State)) +
+      geom_point(shape = 11) + 
+      theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) + 
+      labs(
+        title = "Life Expectancy Change From 1987 to 2009",
+        x = "States",
+        y = "Change in Life Expectancy (in years)")
+    trend_plot <- ggplotly(trend_plot)
+    trend_plot
+  })
+  
+  output$map1q4 <- renderHighchart({
+    map_1987 <- hcmap("countries/us/us-all", data = le_state_1987, value = "avg.life.expectancy",
+                      joinBy = c("name", "State"), name = "Life Expectancy (in years)",
+                      dataLabels = list(enabled = TRUE, format = "{point.name}"),
+                      borderColor = "#FAFAFA", borderWidth = 0.1,
+                      tooltip = list(valueDecimals = 2, valueSuffix = " years"))
+    
+    map_1987
   })
 }
 
