@@ -4,7 +4,7 @@ source("data_processing.R")
 ui <- fluidPage(
   
   sidebarPanel(
-
+    
     ## conditionalPanel() functions for selected tab
     conditionalPanel(condition = "input.tabselected==1",
                      selectInput("year", label = "Select Year for Table", choices = years)
@@ -20,17 +20,18 @@ ui <- fluidPage(
         "Latino" = 5
       ))
     ),
-
+    
     conditionalPanel(
       condition = "input.tabselected==3",
       radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3))
-
+      
     )
   ),
   mainPanel(
- 
+    
     tabsetPanel(
       tabPanel("Question 1", value = 1, 
+               
                p("Black people in the US have a significantly lower median income and 
                               life expectancy than white people and all races. White people in the US 
                  have a slightly higher median income and life expectancy than all races. 
@@ -41,16 +42,27 @@ ui <- fluidPage(
                  average life expectancy overall seems to be correlated with median income. 
                  The races from lowest to highest average life expectancy are Black, All 
                  races, and White. This is the same order for median income."),
+               p(a("The World Bank", href="http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators&preview=on"), 
+"has data on Gross National Income (GNI) per capita and life expectancy from 1968 to 2016.
+                 When we compared those figures, there was a", correlation_GNI_le, 
+                 "correlation between GNI per capita and life expectancy. This is consistent with
+                 our finding that white people had higher median incomes and higher life expectancies."),
                p("The data use to create these visuals comes from the ",
-               a("National Center for Health Statistics", href="https://data.cdc.gov/NCHS/NCHS-Death-rates-and-life-expectancy-at-birth/w9j2-ggv5/data"),
-               "and the ",
-               a("United States Census", href="https://www.census.gov/data/tables/2017/demo/income-poverty/p60-259.html")),
+                 a("National Center for Health Statistics", href="https://data.cdc.gov/NCHS/NCHS-Death-rates-and-life-expectancy-at-birth/w9j2-ggv5/data"),
+                 "and the ",
+                 a("United States Census", href="https://www.census.gov/data/tables/2017/demo/income-poverty/p60-259.html"),
+                 p("Gross National income is defined as", em("the total domestic and foreign output claimed by
+residents of a country, consisting of gross domestic product (GDP), plus factor incomes earned by 
+foreign residents, minus income earned in the domestic economy by nonresidents."),
+                   "You can find more about it",
+                   a("here", href="https://en.wikipedia.org/wiki/Gross_national_income"), ".")
+                 ),
                
                dataTableOutput("table1"),
                plotlyOutput("plotly1b"),
                plotlyOutput("plotly1c")),
-
-
+      
+      
       # Question 2 Plots
       
       tabPanel("Question 2", value=2, align = "center",
@@ -61,21 +73,21 @@ ui <- fluidPage(
                conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", width = "887px", height = "591px")),
                dataTableOutput("table2")),
-
-
-
-
-
+      
+      
+      
+      
+      
       ################## 
       ### Question 3 ###
       ##################
       # Question 3 Plots
       tabPanel("Question 3",
-        value = 3,
-        conditionalPanel(condition = "input.choice2==1", plotlyOutput("plot3cw")),
-        conditionalPanel(condition = "input.choice2==2", plotlyOutput("plot3cb")),
-        conditionalPanel(condition = "input.choice2==3", plotlyOutput("plot3ch")),
-        plotOutput("plot3a"), plotOutput("plot3b")
+               value = 3,
+               conditionalPanel(condition = "input.choice2==1", plotlyOutput("plot3cw")),
+               conditionalPanel(condition = "input.choice2==2", plotlyOutput("plot3cb")),
+               conditionalPanel(condition = "input.choice2==3", plotlyOutput("plot3ch")),
+               plotOutput("plot3a"), plotOutput("plot3b")
       ),
       id = "tabselected"
     )
