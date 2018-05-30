@@ -45,8 +45,8 @@ ui <- fluidPage(
         tabPanel("Question 4", value=4,
                  #plotOutput(map_1987),
                  #plotOutput(map_2009),
-                 plotlyOutput("plot4")),
-                highchartOutput("map1q4", width = "100%", height = "500px")
+                 plotlyOutput("plot4"),
+                highchartOutput("map1q4", width = "100%", height = "500px"))
         ),
       
       id = "tabselected"
