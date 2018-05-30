@@ -40,26 +40,30 @@ server <- function(input, output) {
     get_result
   })
   
-  output$plot1b <- renderPlot({
+  output$plotly1b <- renderPlotly({
     
     plot1b <- ggplot(data = income_by_le) +
       geom_point(mapping = aes(x = Year, y = median_income,  color = Race)) +
       labs(title = "Median Income Over Tiime",
            x = "Year",
-           y = "Median Income")
-    plot1b
+           y = "Median Income") 
+    ggplotly(plot1b, tooltip = c("Year", "Race", "median_income"))
   })
   
-  output$plot1c <- renderPlot({
-    
+
+  
+  output$plotly1c <- renderPlotly({
     plot1c <- ggplot(data = income_by_le) +
       geom_point(mapping = aes(x = Year, y = Avg.Life.Expectancy.Years,  color = Race)) +
       labs(title = "Average Life Expectancy Over Tiime",
            x = "Year",
            y = "Average Life Expectancy")
-    plot1c
+    
+    ggplotly(plot1c, tooltip = 
+               c("Year", "Race", "Avg.Life.Expectancy.Years")
+             )
+    
   })
-  
   
   ################## 
   ### Question 2 ###

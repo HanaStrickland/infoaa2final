@@ -30,19 +30,20 @@ ui <- fluidPage(
       tabPanel("Question 1", value = 1, 
                htmlOutput("q1_analysis"),
                dataTableOutput("table1"),
-               plotOutput("plot1b"), 
-               plotOutput("plot1c")),
+               plotlyOutput("plotly1b"),
+               plotlyOutput("plotly1c")),
 
 
       # Question 2 Plots
       
       tabPanel("Question 2", value=2, align = "center",
-               dataTableOutput("table2"),
+               
                conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na", width = "887px", height = "591px")),
-               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", width = "887px", height = "591px"))),
+               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", width = "887px", height = "591px")),
+               dataTableOutput("table2")),
 
 
 
