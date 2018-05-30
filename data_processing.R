@@ -63,3 +63,37 @@ state_dist_uninsured_by_race$Hispanic <- as.numeric(state_dist_uninsured_by_race
 state_dist_uninsured_by_race$Other[state_dist_uninsured_by_race$Other %in% "N/A"] <- "0"
 state_dist_uninsured_by_race[state_dist_uninsured_by_race == 0] <- NA
 state_dist_uninsured_by_race$Other <- as.numeric(state_dist_uninsured_by_race$Other)
+
+# pct_insurance_by_race <- read_xlsx("data/pct_insurance_by_race.xlsx")
+# pct_insurance_by_race <- as.data.frame(pct_insurance_by_race)
+# le_national <- read_xlsx("data/life_expectancy_death_rates.xlsx")
+# le_national <- as.data.frame(le_national)
+# 
+# 
+# pct_uninsured <- pct_insurance_by_race %>% 
+#   select(Year, Race, Sex, Not.Covered) %>% 
+#   filter(Race %in% c("All Races", "Black Alone", "White Alone"), 
+#          Sex == "Both Sexes")
+# 
+# pct_uninsured_wide <- spread(pct_uninsured, "Race", "Not.Covered")
+# 
+# colnames(pct_uninsured_wide) <- c("Year", "Sex", "All Races", "Black", "White")
+# 
+# pct_uninsured <- gather(pct_uninsured_wide, key = "Race", value = "Percent.Uninsured", "All Races", "Black", "White" )
+# 
+# 
+# 
+# le_by_uninsured <- left_join(pct_uninsured, le_national, by = c("Year", "Sex", "Race"))
+
+
+
+
+
+
+
+
+
+
+
+
+

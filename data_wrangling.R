@@ -4,14 +4,94 @@ pct_insurance_by_race <- read_xlsx("data/pct_insurance_by_race.xlsx")
 le_by_state <- read.csv("data/IHME_US_STATE_LIFE_EXPECTANCY_1987_2009.csv", stringsAsFactors = FALSE)
 le_by_income_state <- read.csv("data/health_ineq_online_table_5.csv", stringsAsFactors = FALSE)
 le_at_birth_race <- read.csv("data/le_at_birth_race.csv", stringsAsFactors = FALSE)
+us_gdp_le <- read.csv("data/world_bank_GDP_le.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
+gni_le <- read.csv("data/wb_gni.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
 
-View(le_at_birth_race)
 income_by_race <- as.data.frame(income_by_race)
 le_national <- as.data.frame(le_national)
 pct_insurance_by_race <- as.data.frame(pct_insurance_by_race)
 
 
-# Combine income and le dataframes, get income_by_le
+################## 
+### Question 1 ###
+##################
+
+# us_gdp_le <- us_gdp_le %>% 
+#   select(-`Country Name`, -`Country Code`, -`Series Code`, -`2017`)
+# 
+# gdp <- us_gdp_le %>% 
+#   filter(`Series Name` == "GDP per capita (current US$)")
+# 
+# le <- us_gdp_le %>% 
+#   filter(`Series Name` == "Life expectancy at birth, total (years)")
+# 
+# gdp_long <- gather(gdp, "Year", "GDP", `1968`:`2016`)
+# 
+# le_long <- gather(le, "Year", "Life Expectancy", `1968`:`2016`)
+# 
+# gdp_by_le <- left_join(gdp_long, le_long, by = "Year")
+
+######
+
+gni_le <- gni_le %>% 
+  select(-`Country Name`, -`Country Code`, -`Series Code`)
+
+gni <- gni_le %>% 
+  filter(`Series Name` == "Adjusted net national income per capita (constant 2010 US$)")
+
+le <- gni_le %>% 
+  filter(`Series Name` == "Life expectancy at birth, total (years)")
+
+gni_long <- gather(gni, "Year", "GNI Per Capita", `1970`:`2016`)
+
+le_long <- gather(le, "Year", "Life Expectancy", `1970`:`2016`)
+
+gni_by_le <- left_join(gni_long, le_long, by = "Year")
+
+
+# plot_interactive <- gdp_by_le %>%
+#   plot_ly(
+#     x = ~ gdp_by_le$`Life Expectancy`,
+#     y = ~ gdp_by_le$GDP,
+#     frame = gdp_by_le$Year
+#   ) %>%
+#   add_markers() %>%
+#   #add_text(textposition = "left") %>% 
+#   layout(showlegend = FALSE) %>%
+#   layout(
+#     title = "GDP per Capita by Life Expectancy",
+#     xaxis = list(title = "Life Expectancy"),
+#     yaxis = list(title = "GDP per Capita")
+#   ) 
+# 
+# 
+# correlation_GDPperCapita_le <- cor(gdp_by_le$GDP, gdp_by_le$`Life Expectancy`) #0.9647728
+# correlation_GDPperCapita_le <- paste(round(correlation_GDPperCapita_le*100,digits=2),"%",sep="")
+
+correlation_GNI_le <- cor(gni_by_le$`GNI Per Capita`, gni_by_le$`Life Expectancy`)
+correlation_GNI_le <- paste(round(correlation_GNI_le*100,digits=2),"%",sep="")
+# Combine income and le dataframes
+
+plot_interactive <- pct_uninsured %>%
+  plot_ly(
+    x = ~ pct_uninsured$Race,
+    y = ~ pct_uninsured$Not.Covered,
+    frame = pct_uninsured$Year,
+    text = pct_uninsured$Race
+  ) %>%
+  add_markers() %>%
+  add_text(textposition = "left") %>% 
+  layout(showlegend = FALSE) %>%
+  layout(
+    title = "Title",
+    xaxis = list(title = "X Title"),
+    yaxis = list(title = "Y Title")
+  ) 
+
+
+
+
+
 income_black_white <- income_by_race %>%
   filter(Race %in% c("All Races", "White Alone", "Black Alone")) %>%
   select(Year, Race, median)
@@ -34,8 +114,44 @@ income_by_le <- left_join(income_black_white, le_black_white, by = c("Year", "Ra
 income_by_le
 
 
+years <- unique(income_by_le$Year)
 
 
+# Get correlation
+
+avg_median_income_black <- sum(income_black_white_wide_median$Black) / nrow(income_black_white_wide_median)
+
+avg_median_income_white <- sum(income_black_white_wide_median$White) / nrow(income_black_white_wide_median)
+
+avg_median_income_all <- sum(income_black_white_wide_median$`All Races`) / nrow(income_black_white_wide_median)
+
+le_black <- income_by_le %>% 
+  filter(Race == "Black") %>% 
+  select(Avg.Life.Expectancy.Years) 
+
+avg_le_black <- sum(le_black, na.rm = TRUE) / (nrow(le_black) - 2)
+
+le_white <- income_by_le %>% 
+  filter(Race == "White") %>% 
+  select(Avg.Life.Expectancy.Years) 
+
+avg_le_white <- sum(le_white, na.rm = TRUE) / (nrow(le_white) - 2)
+
+le_all <- income_by_le %>% 
+  filter(Race == "All Races") %>% 
+  select(Avg.Life.Expectancy.Years) 
+
+avg_le_all <- sum(le_all, na.rm = TRUE) / (nrow(le_all) - 2)
+
+average_medians <- c(avg_median_income_black, avg_median_income_white, avg_median_income_all)
+average_les <- c(avg_le_black, avg_le_white, avg_le_all)
+
+
+correlation_income_le_race <- cor(average_medians, average_les) #0.9985999
+
+################## 
+### Question 2 ###
+##################
 #find life expectancy per state for African Americans
 
 le_at_birth_race <- le_at_birth_race %>%
@@ -60,8 +176,12 @@ new_data$Native.American[new_data$Native.American %in% "NSD"] <- "0"
 new_data[new_data == 0] <- NA
 new_data$Native.American <- as.numeric(new_data$Native.American)
 
-#le_by_state source
-#http://ghdx.healthdata.org/record/united-states-adult-life-expectancy-state-and-county-1987-2009#
+# plot 2b
+le_at_birth_race_long <- le_at_birth_race %>% 
+  filter(region != "United States") %>% 
+  gather(key = "Race",
+         value = "Life_Expectancy", "White", "African.American", "Latino", "Asian.American",  
+         "Native.American")
 
-#le_by_income_state
-#https://healthinequality.org/data/ table 5#
+locations <- unique(le_at_birth_race_long$region)
+

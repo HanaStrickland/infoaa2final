@@ -1,58 +1,104 @@
+source("data_wrangling.R")
+source("data_processing.R")
+
 ui <- fluidPage(
   
   sidebarPanel(
     
     ## conditionalPanel() functions for selected tab
-    conditionalPanel(condition = "input.tabselected==1"),
-    conditionalPanel(condition = "input.tabselected==2",
-                     radioButtons("choice","Choose a Race", choices = c("Caucasian" = 1,
-                                                                        "African American" = 2,
-                                                                        "Asian American" = 3,
-                                                                        "Native American" = 4,
-                                                                        "Latino" = 5 ))),
-                 
-    conditionalPanel(condition = "input.tabselected==3",
-                    radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3)))
-
+    conditionalPanel(condition = "input.tabselected==1",
+                     selectInput("year", label = "Select Year for Table", choices = years)
+    ),
+    conditionalPanel(
+      condition = "input.tabselected==2",
+      selectInput("location", label = "Select Location (for Plot 2)", choices = locations),
+      radioButtons("choice", "Choose a Race", choices = c(
+        "White" = 1,
+        "African American" = 2,
+        "Asian American" = 3,
+        "Native American" = 4,
+        "Latino" = 5
+      ))
+    ),
+    
+    conditionalPanel(
+      condition = "input.tabselected==3",
+      radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3))
+      
+    )
   ),
   mainPanel(
-    # recommend review the syntax for tabsetPanel() & tabPanel() for better understanding
-    # id argument is important in the tabsetPanel()
-    # value argument is important in the tabPanle()
+    
     tabsetPanel(
-      tabPanel("Question 1", value=1, 
-               plotOutput("plot1a"),
-               plotOutput("plot1b"), 
-               plotOutput("plot1c")),
+      tabPanel("Question 1", value = 1, 
+               
+               p("Black people in the US have a significantly lower median income and 
+                              life expectancy than white people and all races. White people in the US 
+                 have a slightly higher median income and life expectancy than all races. 
+                 If we compare trends over time, there does not seem to be a correlation 
+                 between median income and average life expectancy. Average life expectancy 
+                 seemed to to be increasing over time at a decelerating rate while median 
+                 income dipped after 2008 and slowly increased. However, we should note that 
+                 average life expectancy overall seems to be correlated with median income. 
+                 The races from lowest to highest average life expectancy are Black, All 
+                 races, and White. This is the same order for median income."),
+               p(a("The World Bank", href="http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators&preview=on"), 
+                 "has data on Gross National Income (GNI) per capita and life expectancy from 1968 to 2016.
+                 When we compared those figures, there was a", correlation_GNI_le, 
+                 "correlation between GNI per capita and life expectancy. This is consistent with
+                 our finding that white people had higher median incomes and higher life expectancies."),
+               p("The data use to create these visuals comes from the ",
+                 a("National Center for Health Statistics", href="https://data.cdc.gov/NCHS/NCHS-Death-rates-and-life-expectancy-at-birth/w9j2-ggv5/data"),
+                 "and the ",
+                 a("United States Census", href="https://www.census.gov/data/tables/2017/demo/income-poverty/p60-259.html"),
+                 p("Gross National income is defined as", em("the total domestic and foreign output claimed by
+residents of a country, consisting of gross domestic product (GDP), plus factor incomes earned by 
+foreign residents, minus income earned in the domestic economy by nonresidents."),
+                   "You can find more about it",
+                   a("here", href="https://en.wikipedia.org/wiki/Gross_national_income"), ".")
+               ),
+               
+               dataTableOutput("table1"),
+               plotlyOutput("plotly1b"),
+               plotlyOutput("plotly1c")),
+      
       
       # Question 2 Plots
+      
+      
       tabPanel("Question 2", value=2, align = "center",
+               
                conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na", width = "887px", height = "591px")),
-               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", width = "887px", height = "591px"))),
-               
+               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", width = "887px", height = "591px")),
+               dataTableOutput("table2")),
       
-      # Question 3 Plots
-      tabPanel("Question 3", value=3,
-               conditionalPanel(condition="input.choice2==1", plotlyOutput("plot3cw")),
-               conditionalPanel(condition="input.choice2==2", plotlyOutput("plot3cb")),
-               conditionalPanel(condition="input.choice2==3", plotlyOutput("plot3ch")),
-               plotOutput("plot3a"), plotOutput("plot3b")),
       
       # Question 3 Visualizations
-        tabPanel("Question 4", value=4,
-                 #plotOutput(map_1987),
-                 #plotOutput(map_2009),
-                 plotlyOutput("plot4"),
-                highchartOutput("map1q4", width = "100%", height = "500px"))
-        ),
       
-      id = "tabselected"
-    )
+      
+      
+      ################## 
+      ### Question 3 ###
+      ##################
+      # Question 3 Plots
+      tabPanel("Question 3",
+               value = 3,
+               conditionalPanel(condition = "input.choice2==1", plotlyOutput("plot3cw")),
+               conditionalPanel(condition = "input.choice2==2", plotlyOutput("plot3cb")),
+               conditionalPanel(condition = "input.choice2==3", plotlyOutput("plot3ch")),
+               plotOutput("plot3a"), plotOutput("plot3b")
+      ),
+      
+      tabPanel("Question 4", value=4,
+               #plotOutput(map_1987),
+               #plotOutput(map_2009),
+               plotlyOutput("plot4"),
+               highchartOutput("map1q4", width = "100%", height = "500px"))
+    ),
+    id = "tabselected"
   )
+)
 
-
-
-  
