@@ -324,7 +324,8 @@ What this tells us is that women tend to live longer than men, but both men and 
                                               the state with the lowest life expectancy? Mississippi has the highest motor-vehicle death rate in the nation
                                               at 21.3 per 100,000 people, has the highest suicide rate (in Hancock County), 35% of the population does not
                                               exercise regularly, and has the highest obesity and poverty rate in the country. Due to being the poorest state,
-                                              healthcare neccessities become difficult for people to access, thus leading to the decrease of overall life expectancy. Sources used: ",
+                                              healthcare neccessities become difficult for people to access, thus leading to the decrease of overall life expectancy."),
+                                          p("Sources used: ",
                                              a("1", href="https://www.cnn.com/2018/04/10/health/states-life-expectancy-study/index.html"),
                                              a("2", href="https://www.cheatsheet.com/culture/state-shortest-life-expectancy.html/?a=viewall"),
                                              a("3", href="http://dcist.com/2016/07/life_expectancy.php"))
