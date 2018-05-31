@@ -25,10 +25,8 @@ ui <- fluidPage(
 
     conditionalPanel(
       condition = "input.tabselected == 3",
-      radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3))
-
-    ),
-  
+      radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3))),
+       
     conditionalPanel(
       condition = "input.tabselect == 4"
     )
@@ -40,8 +38,8 @@ ui <- fluidPage(
                
                p("If we take the average of median income and life expectancy between 2002 and 2016, we see that the median 
 income and life expectancy for black people is ", avg_median_income_black_string, " and ", avg_le_black, " years, respectively.
-For white people, average median income and life expectancy is $", avg_median_income_white_string, " and ", avg_le_white," years respectively.
-For all races, average median income and life expectancy is $", avg_median_income_all_string," and ",avg_le_all, "respectively."),
+For white people, average median income and life expectancy is ", avg_median_income_white_string, " and ", avg_le_white," years respectively.
+For all races, average median income and life expectancy is ", avg_median_income_all_string," and ",avg_le_all, "respectively."),
                               p("Black people in the US have a significantly lower median income and life expectancy than white people and all races. White people in the US 
                  have a slightly higher median income and life expectancy than all races. 
                  If we compare trends over time, there does not seem to be a correlation 
@@ -86,6 +84,8 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
                dataTableOutput("table2")),
       
       
+
+
 
       
       
