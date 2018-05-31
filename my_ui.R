@@ -30,7 +30,12 @@ ui <- fluidPage(theme = shinytheme("superhero"),
     ),
 
     conditionalPanel(
-      condition = "input.tabselected == 3"
+      condition = "input.tabselected == 3",
+      sliderInput("insurance_year",
+                  label = "Slide to filter for Year",
+                  min = insurance_year_range[1],
+                  max = insurance_year_range[2],
+                  value = insurance_year_range, step = 1)
       ),
        
     conditionalPanel(

@@ -234,9 +234,16 @@ server <- function(input, output) {
   ################## 
   ### Question 3 ###
   ##################
+  results_year_slider <- reactive({
+    results <- uninsured_data %>%
+      filter(Year >= input$insurance_year[1] & Year <= input$insurance_year[2])
+
+
+    results
+  })
   
   output$plot3 <- renderPlot({
-    ggplot(uninsured_data, aes(x = Year, y = Data, color = `Race/Ethnicity`)) +
+    ggplot(results_year_slider(), aes(x = Year, y = Data, color = `Race/Ethnicity`)) +
       geom_point() +
       facet_grid(~`Race/Ethnicity`) +
       ggtitle("Percent of Uninsured by Race") +
@@ -249,8 +256,6 @@ server <- function(input, output) {
   ##################
   
   results_le_slider <- reactive({
-    #range_results <- le_range >= input$avg_le[1] & le_range <= input$avg_le[2]
-    #results <- trend[trend$avg.life.expectancy == range_results, ]
     
     results <- trend %>%
       filter(avg.life.expectancy >= input$avg_le[1] & avg.life.expectancy <= input$avg_le[2])
