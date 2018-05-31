@@ -226,7 +226,10 @@ also among the lowest at 38,145. </p><br><h3>Facts About Life Expectancy For Eac
                  </tr>
                  </table>')),
                                            conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", height = "700px"), HTML(
-                                             '<br><p align = "left">Average Age Range for Latinos: 85-87.5</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
+                                             '<br><p align = "left">Average Age Range for Latinos: 85-87.5</p>
+                 <br><p>Latinos have the second highest life expectancy in the U.S.A, which is interesting because they also are the most uninsured race. Latinos high life expectancy has
+ has puzzled scholars for decades, and Demographers call this the “Hispanic Epidemiological Paradox.” According to PRB, "One explanation is that cultural factors—such as better health habits and stronger networks of social support in the Hispanic community—may offer protection from some diseases and lead to longer lives."
+</p><b><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
                  <table style="width:80%" align="left">
                  <tr>
                  <td><p style="font-size:160%;">Average Age in General</p></td>
