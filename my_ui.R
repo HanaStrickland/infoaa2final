@@ -63,7 +63,7 @@ ui <- fluidPage(theme = shinytheme("superhero"),
 Using the best fit line, we can estimate that average life expectancy increased at about", strong(overview_slope) ," years per year.
 The sharp drop in life expectancy in 1918 is do to the ",
                                              a("Spanish Flu", href="https://virus.stanford.edu/uda/"), 
-" which killed 20 to 40 million people.
+", which killed 20 to 40 million people.
                  This webpage will explore different elements of life expectancy such as race, income, 
                  insurance coverage, and state information. We hope that users will come away with a better understanding 
                  of how these elements influence life expectancy."),
@@ -89,7 +89,7 @@ For all races, average median income and life expectancy is ", avg_median_income
                  The races from lowest to highest average life expectancy are Black, All 
                  races, and White. This is the same order for median income."),
                                            p(a("The World Bank", href="http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators&preview=on"), 
-                                             "has data on Gross National Income (GNI) per capita and life expectancy from 1968 to 2016.
+                                             "has data on Gross National Income (GNI) per capita and life expectancy from 1968 to 2016, which is known to be a good proxy for median income.
                  When we compared those figures, there was a", correlation_GNI_le, 
                                              "correlation between GNI per capita and life expectancy. This is consistent with
                  our finding that white people had higher median incomes and higher life expectancies. Therefore, we conclude that higher income is associated with a higher life expectancy and that black people suffer from a lower average life expectancy."),
@@ -251,14 +251,14 @@ For all races, average median income and life expectancy is ", avg_median_income
                                            p("African Americans in the U.S.A have one of the lowest life expectancies. This may be attributed to their median income, which is 
  +also among the lowest at 38,145."),
                                            p("Asian Americans have the highest life expectancy of all races in the U.S.A, 
-                                             despite not having the highes income nor lowest uninsured population. Scholars largely attribute their long lives to cultural factors."),
+                                             despite not having the highest income nor lowest uninsured population. Scholars largely attribute their long lives to cultural factors."),
                                            p("Native Americans have one of the lowest life expectancies of races in the U.S.A. This is commonly believed to be because of high alcohol consumption on reservations. 
                                              To learn more about consequences alcohol consumption has on Native American reservations, you can visit ", 
                                              a("here", href="https://addiction.lovetoknow.com/wiki/Consequences_of_Alcoholism_in_Native_Americans"), "."
                                              ),
                                            p("Latinos have the second highest life expectancy in the U.S.A, which is interesting because they also are the most uninsured race. Latinos high life expectancy has
- + has puzzled scholars for decades, and Demographers call this the Hispanic Epidemiological Paradox. According to ", a("PRB", href="https://www.prb.org/us-hispanics-life-expectancy/"), 
-                                             em("One explanation is that cultural factors-such as better health habits and stronger networks of social support in the Hispanic community-may offer protection from some diseases and lead to longer lives.")),
+ puzzled scholars for decades, and Demographers call this the Hispanic Epidemiological Paradox. According to ", a("PRB", href="https://www.prb.org/us-hispanics-life-expectancy/"), 
+                                             em("One explanation is that cultural factors-such as better health habits and stronger networks of social support in the Hispanic community may offer protection from some diseases and lead to longer lives.")),
                                            p("Information used in this visual comes from the ",
                                              a("National Center for Health Statistics", 
                                                href="https://data.cdc.gov/NCHS/NCHS-Death-rates-and-life-expectancy-at-birth/w9j2-ggv5/data"), ".")
@@ -298,7 +298,7 @@ For all races, average median income and life expectancy is ", avg_median_income
                                            p("The scatter plot shows change in life expectancy between 1987 and 2009.
 Median life exepctancy in 1987 was ", strong(median_le_male_1987), " for males and ", strong(median_le_female_1987), " for females.
 Median life expectancy in 2009 was ", strong(median_le_male_2009)," for males and ", strong(median_le_female_2009), " for females.
-What this tells us is that women tend to live longer than men, but both men and women saw life expectancy from 1987 to 2009.
+What this tells us is that women tend to live longer than men, but both men and women saw life expectancy from 1987 to 2009 increase.
                  Median change in average life expectancy was ", strong(median_change_in_le), " years.
                                              From the data analysis that we performed, we can infer that the statistically significant
                                              increase in average life expectancy for the District of Columbia might be coming from the
@@ -333,10 +333,10 @@ What this tells us is that women tend to live longer than men, but both men and 
                                            highchartOutput("map2q4", width = "100%", height = "400px"),
                                            p("Why might Minnesota be the state with the highest life expectancy? It was one of the states to ban smoking
                                               in public places and spends a large amount of their budget on parks and other recreational activities. This
-                                              promotes many people to get physical activity and to maintain a healthy lifestyle. Why might Mississippi be
+                                              encourages many people to get physically active and to maintain a healthy lifestyle. Why might Mississippi be
                                               the state with the lowest life expectancy? Mississippi has the highest motor-vehicle death rate in the nation
-                                              at 21.3 per 100,000 people, has the highest suicide rate (in Hancock County), 35% of the population does not
-                                              exercise regularly, and has the highest obesity and poverty rate in the country. Due to being the poorest state,
+                                              at 21.3 per 100,000 people and the highest suicide rate (in Hancock County). Furthermore, 35% of the population does not
+                                              exercise regularly, and Mississippi has the highest obesity and poverty rate in the country. Due to being the poorest state,
                                               healthcare neccessities become difficult for people to access, thus leading to the decrease of overall life expectancy."),
                                           p("Sources used: ",
                                              a("1", href="https://www.cnn.com/2018/04/10/health/states-life-expectancy-study/index.html"),
