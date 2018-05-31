@@ -12,7 +12,9 @@ ui <- fluidPage(
                                                                         "Latino" = 5 ))),
                  
     conditionalPanel(condition = "input.tabselected==3",
-                    radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3)))
+                    radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3))),
+    
+    conditionalPanel(condition = "input.tabselected==4")
 
   ),
   mainPanel(
@@ -32,26 +34,24 @@ ui <- fluidPage(
                conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", width = "887px", height = "591px"))),
-               
       
-      # Question 3 Plots
-      tabPanel("Question 3", value=3,
+      tabPanel("Question 3", value = 3,
                conditionalPanel(condition="input.choice2==1", plotlyOutput("plot3cw")),
                conditionalPanel(condition="input.choice2==2", plotlyOutput("plot3cb")),
                conditionalPanel(condition="input.choice2==3", plotlyOutput("plot3ch")),
                plotOutput("plot3a"), plotOutput("plot3b")),
-      
-      # Question 3 Visualizations
-        tabPanel("Question 4", value=4,
-                 #plotOutput(map_1987),
-                 #plotOutput(map_2009),
-                 plotlyOutput("plot4"),
-                highchartOutput("map1q4", width = "100%", height = "500px"))
-        ),
+               
+      tabPanel("Question 4", value = 4,
+               #plotOutput(map_1987),
+               #plotOutput(map_2009),
+               highchartOutput("map1q4", width = "100%", height = "500px"),
+               plotlyOutput("plot4")),
+
       
       id = "tabselected"
     )
   )
+)
 
 
 
