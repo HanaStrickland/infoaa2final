@@ -86,7 +86,9 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
                fluidRow(
                  column(6,plotlyOutput("plotly1b")),
                  column(6, plotlyOutput("plotly1c"))
-                 )
+                 ),
+               br(),
+               br()
                ),
                
       
@@ -244,7 +246,12 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
       ### Question 4 ###
       ##################
       tabPanel(strong("Change in Life Expectancy by State"), value = 4,
-               p("Click on a state in the legend to see more."),
+               p("The scatter plot shows change in life expectancy between 1987 and 2009.
+Median life exepctancy in 1987 was ", strong(median_le_male_1987), " for males and ", strong(median_le_female_1987), " for females.
+Median life expectancy in 2009 was ", strong(median_le_male_2009)," for males and ", strong(median_le_female_2009), " for females.
+                 Median change in life expectancy was ", strong(median_change_in_le), " years."
+                 ),
+               p("Click on a state in the legend to see more information about that state."),
                sliderInput("avg_le",
                            label = "Slide to filter for average life expectancy",
                            min = le_range[1],

@@ -57,3 +57,16 @@ trend <- trend %>% select(State, avg.life.expectancy)
 trend <- unique(trend)
 
 le_range <- range(trend$avg.life.expectancy)
+
+median_change_in_le <- median(trend$avg.life.expectancy)
+
+le_for_median_1987 <- le_state %>% 
+  filter(Year == "1987")
+median_le_male_1987 <- median(le_for_median_1987$Male.life.expectancy..years.) #71.6
+median_le_female_1987 <- median(le_for_median_1987$Female.life.expectancy..years.) # 78.5
+
+le_for_median_2009 <- le_state %>% 
+  filter(Year == "2009")
+median_le_male_2009 <- median(le_for_median_2009$Male.life.expectancy..years.) #76.3
+median_le_female_2009 <- median(le_for_median_2009$Female.life.expectancy..years.) # 81.1
+
