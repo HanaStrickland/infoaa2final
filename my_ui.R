@@ -61,7 +61,7 @@ For all races, average median income and life expectancy is ", avg_median_income
                  races, and White. This is the same order for median income."),
                p(a("The World Bank", href="http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators&preview=on"), 
                  "has data on Gross National Income (GNI) per capita and life expectancy from 1968 to 2016.
-                 When we compared those figures, there was a", correlation_GNI_le, 
+                 When we compared those figures, there was a", #correlation_GNI_le, 
                  "correlation between GNI per capita and life expectancy. This is consistent with
                  our finding that white people had higher median incomes and higher life expectancies."),
                p("The data use to create these visuals comes from the ",
@@ -86,11 +86,27 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
       
 
       tabPanel("Question 2", value=2, align = "center",
-               conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", height = "600px")),
+               conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", height = "600px"), HTML(
+                 '<br><table style="width:20%" align="left">
+                 <tr>
+                 <td><p style="font-size:160%;">Average Age in General</p></td>
+                 
+                 <td><p style="font-size:160%;">?</p></td> 
+                 </tr>
+                 
+                 <th><p style="font-size:160%;">Race With Lowest Average Age Ranking</p></th>
+                 <th>?</th> 
+                 </tr>
+                 <tr>
+                 <td><p style="font-size:160%;">Race With Lowest Age</p></td>
+                 <td><p style="font-size:160%;">?</p></td> 
+                 </tr>
+                 </table>')
+               ),
                conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa", height = "600px")),
-               conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa","600px")),
+               conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa",height = "600px")),
                conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na",height = "600px")),
-               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat","600px"))),
+               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", height = "600px"))),
 
       
       
