@@ -35,7 +35,7 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                   label = "Slide to filter for Year",
                   min = insurance_year_range[1],
                   max = insurance_year_range[2],
-                  value = insurance_year_range, step = 1)
+                  value = insurance_year_range, step = 1000)
       ),
        
     conditionalPanel(
@@ -50,7 +50,7 @@ ui <- fluidPage(theme = shinytheme("superhero"),
   mainPanel(
     
     tabsetPanel(
-      tabPanel("Question 1", value = 1, 
+      tabPanel(strong("Life Expectancy, Median Income, and Race"), value = 1, 
                
                p("If we take the average of median income and life expectancy between 2002 and 2016, we see that the median 
 income and life expectancy for black people is ", avg_median_income_black_string, " and ", avg_le_black, " years, respectively.
@@ -82,8 +82,13 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
                ),
                
                dataTableOutput("table1"),
-               plotlyOutput("plotly1b"),
-               plotlyOutput("plotly1c")),
+               
+               fluidRow(
+                 column(6,plotlyOutput("plotly1b")),
+                 column(6, plotlyOutput("plotly1c"))
+                 )
+               ),
+               
       
       
       ################## 
@@ -91,7 +96,7 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
       ##################      
       
 
-      tabPanel("Question 2", value=2, align = "center",
+      tabPanel(strong("Heat Map of Life Expectancy by Race"), value = 2, align = "center",
                conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", height = "600px"), 
                                 HTML(
                                   '<br><p align = "left">Average Age Range for Whites: 77.5-80</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
@@ -222,7 +227,7 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
       ################## 
       ### Question 3 ###
       ##################
-      tabPanel("Question 3",
+      tabPanel(strong("Uninsured by Race"),
                value = 3,
                p("This visual shows the percent of uninsured by race. Each data point represents a state.
                  The visual shows that Hispanics are the highest uninsured demographic and whites are the
@@ -238,7 +243,7 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
       ##################
       ### Question 4 ###
       ##################
-      tabPanel("Question 4", value=4,
+      tabPanel(strong("Change in Life Expectancy by State"), value = 4,
                p("Click on a state in the legend to see more."),
                sliderInput("avg_le",
                            label = "Slide to filter for average life expectancy",
@@ -248,7 +253,7 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
                plotlyOutput("plot4")
                
     ),
-    highchartOutput("map1q4", width = "100%", height = "500px"),
+    #highchartOutput("map1q4", width = "100%", height = "500px"),
     id = "tabselected"
   )
 )

@@ -60,5 +60,5 @@ white_uninsured <- uninsured_data_national %>%
 white_uninsured <- white_uninsured[1,1] #5.701
 white_uninsured <- paste(white_uninsured, "%", sep = "")
 
-insurance_year_range <- range(uninsured_data$Year)
+insurance_year_range <- range(uninsured_data_national$Year)
 

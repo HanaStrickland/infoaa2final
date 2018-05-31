@@ -38,13 +38,13 @@ le_state_2009 <- mutate(le_state_2009, avg.life.expectancy = (Male.life.expectan
                                                                 Female.life.expectancy..years.) / 2)
 
 #map shows LE for each state in year 2009
-# map_2009 <- hcmap("countries/us/us-all", data = le_state_2009, value = "avg.life.expectancy",
-#       joinBy = c("name", "State"), name = "Life Expectancy (in years)",
-#       dataLabels = list(enabled = TRUE, format = "{point.name}"),
-#       borderColor = "#FAFAFA", borderWidth = 0.1,
-#       tooltip = list(valueDecimals = 2, valueSuffix = " years"))
-# 
-# map_2009
+map_2009 <- hcmap("countries/us/us-all", data = le_state_2009, value = "avg.life.expectancy",
+      joinBy = c("name", "State"), name = "Life Expectancy (in years)",
+      dataLabels = list(enabled = TRUE, format = "{point.name}"),
+      borderColor = "#FAFAFA", borderWidth = 0.1,
+      tooltip = list(valueDecimals = 2, valueSuffix = " years"))
+
+map_2009
 
 #dataframe contains the trend between 1987-2009
 

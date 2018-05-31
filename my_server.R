@@ -32,7 +32,8 @@ server <- function(input, output) {
       geom_point(mapping = aes(x = Year, y = median_income,  color = Race)) +
       labs(title = "Median Income Over Time",
            x = "Year",
-           y = "Median Income") 
+           y = "Median Income") +
+      theme(plot.title = element_text(size = 18)) 
     ggplotly(plot1b, tooltip = c("Year", "Race", "median_income"))
   })
   
@@ -43,7 +44,8 @@ server <- function(input, output) {
       geom_point(mapping = aes(x = Year, y = Avg.Life.Expectancy.Years,  color = Race)) +
       labs(title = "Average Life Expectancy Over Time",
            x = "Year",
-           y = "Average Life Expectancy")
+           y = "Average Life Expectancy") +
+      theme(plot.title = element_text(size = 18)) 
     
     ggplotly(plot1c, tooltip = 
                c("Year", "Race", "Avg.Life.Expectancy.Years")
@@ -278,13 +280,13 @@ server <- function(input, output) {
     
   })
   
-  output$map1q4 <- renderHighchart({
-    map_1987 <- hcmap("countries/us/us-all", data = le_state_1987, value = "avg.life.expectancy",
-                      joinBy = c("name", "State"), name = "Life Expectancy (in years)",
-                      dataLabels = list(enabled = TRUE, format = "{point.name}"),
-                      borderColor = "#FAFAFA", borderWidth = 0.1,
-                      tooltip = list(valueDecimals = 2, valueSuffix = " years"))
-    
-    map_1987
-  })
+  # output$map1q4 <- renderHighchart({
+  #   map_1987 <- hcmap("countries/us/us-all", data = le_state_1987, value = "avg.life.expectancy",
+  #                     joinBy = c("name", "State"), name = "Life Expectancy (in years)",
+  #                     dataLabels = list(enabled = TRUE, format = "{point.name}"),
+  #                     borderColor = "#FAFAFA", borderWidth = 0.1,
+  #                     tooltip = list(valueDecimals = 2, valueSuffix = " years"))
+  #   
+  #   map_1987
+  # })
 }
