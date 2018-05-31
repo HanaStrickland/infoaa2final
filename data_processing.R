@@ -90,7 +90,7 @@ state_dist_uninsured_by_race$Other <- as.numeric(state_dist_uninsured_by_race$Ot
 coverage_by_race <- read.csv("data/Health Insurance Coverage Type by Race.csv", stringsAsFactors = FALSE)
 
 uninsured_data <- coverage_by_race %>% 
-  filter(Coverage.Type == "Uninsured", Data.Type == "Percent") 
+  filter(Coverage.Type == "Uninsured", Data.Type == "Percent", Location != "United States") 
 
 colnames(uninsured_data) <- c("Fips", "Location", "Coverage Type", "Race/Ethnicity", "Year","Data.Type",       
                               "Data", "MOE"  )

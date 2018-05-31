@@ -160,7 +160,7 @@ server <- function(input, output) {
       geom_polygon(aes(x = long, y = lat, group = group, 
                        fill = cut(new_data$White, seq(65, 90, by = 2.5), include.lowest = TRUE), label = region)) +
       scale_fill_manual(name = "Age Range", values = c("#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8"), na.value = "#636363") +
-      labs(title = "Life Expectancies for Caucasians in 2008") +
+      labs(title = "Life Expectancies for Whites in 2008") +
       theme_light() + theme(
         plot.title = element_text(color = '#02818a', size = 14,  face = 'bold'),
         axis.title.x = element_text(color = '#bfd3e6', size = 10, face = 'bold.italic'),
@@ -295,7 +295,7 @@ server <- function(input, output) {
   #   plot3ch
   # })
   
-  output$plot3c <- renderPlot({
+  output$plot3 <- renderPlot({
     ggplot(uninsured_data, aes(x = Year, y = Data, color = `Race/Ethnicity`)) +
       geom_point() +
       facet_grid(~`Race/Ethnicity`) +

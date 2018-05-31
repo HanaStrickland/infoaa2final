@@ -118,8 +118,13 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
                # conditionalPanel(condition = "input.choice2==1", plotlyOutput("plot3cw")),
                # conditionalPanel(condition = "input.choice2==2", plotlyOutput("plot3cb")),
                # conditionalPanel(condition = "input.choice2==3", plotlyOutput("plot3ch")),
-               # plotOutput("plot3a"), plotOutput("plot3b"), 
-               plotOutput("plot3c")
+               # plotOutput("plot3a"), plotOutput("plot3b"),
+               p("This visual shows the percent of uninsured by race. Each data point represents a state.
+                 The visual shows that Hispanics are the highest uninsured demographic and whites are the
+                 lowest uninsured demographic."),
+               p("Data for this visual comes from the ",
+                 a("State Health Access Data Assistance Center", href="http://statehealthcompare.shadac.org/table/29/health-insurance-coverage-type-by-race-ethnicity#2/39,40,41,42,43,1,10/5/57,58"), "."),
+               plotOutput("plot3")
       ),
       
       ##################
