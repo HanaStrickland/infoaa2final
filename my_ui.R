@@ -20,11 +20,12 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                                   condition = "input.tabselected == 0"
                                 ),
                                 
-                                conditionalPanel(condition = "input.tabselected == 1"
+                                conditionalPanel(condition = "input.tabselected == 1",
+                                                 selectInput("year", label = "Select Year for Table", choices = years)
+                                                 
                                 ),
                                 conditionalPanel(
                                   condition = "input.tabselected == 2",
-                                  selectInput("year", label = "Select Year for Table", choices = years),
                                   radioButtons("choice", "Choose a Race", choices = c(
                                     "White" = 1,
                                     "African American" = 2,
@@ -58,7 +59,11 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                                   tabPanel(strong("Overview of Life Expectancy"), value = 0,
                                            p("Life expectancy is an inportant indicator of the health of a community. 
                  This graph shows average life expectancy between 1900 and 2014. 
-                 As you can see, life expectancy has dramatically increased from ", strong(le_1900), " in 1900 to", strong(le_2014) ," in 2014. 
+                 As you can see, life expectancy has dramatically increased from ", strong(le_1900), " in 1900 to", strong(le_2014) ," in 2014.
+Using the best fit line, we can estimate that average life expectancy increased at about", strong(overview_slope) ," years per year.
+The sharp drop in life expectancy in 1918 is do to the ",
+                                             a("Spanish Flu", href="https://virus.stanford.edu/uda/"), 
+" which killed 20 to 40 million people.
                  This webpage will explore different elements of life expectancy such as race, income, 
                  insurance coverage, and state. We hope that users will come away with a better understanding 
                  of how these elements influence life expectancy."),
@@ -87,7 +92,7 @@ For all races, average median income and life expectancy is ", avg_median_income
                                              "has data on Gross National Income (GNI) per capita and life expectancy from 1968 to 2016.
                  When we compared those figures, there was a", correlation_GNI_le, 
                                              "correlation between GNI per capita and life expectancy. This is consistent with
-                 our finding that white people had higher median incomes and higher life expectancies."),
+                 our finding that white people had higher median incomes and higher life expectancies. Therefore, we conclude that higher income is associated with a higher life expectancy and that black people suffer from a lower average life expectancy."),
                                            
                                            
                                            dataTableOutput("table1"),
@@ -291,11 +296,11 @@ What this tells us is that women tend to live longer than men, but both men and 
                                            br(),
                                            p("Data for this visualization comes from the ",
                                              a("Institute for Health Metrics and Evaluation", 
-                                               href="http://ghdx.healthdata.org/ihme_data"), ".")
+                                               href="http://ghdx.healthdata.org/ihme_data"), "."),
+                                           highchartOutput("map1q4", width = "100%", height = "400px"),
+                                           highchartOutput("map2q4", width = "100%", height = "400px")
                                            
                                   ),
-                                  #highchartOutput("map1q4", width = "100%", height = "500px"),
-                                  
                                   id = "tabselected"
                                 )
                               )
