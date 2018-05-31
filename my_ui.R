@@ -86,27 +86,130 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
       
 
       tabPanel("Question 2", value=2, align = "center",
-               conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", height = "600px"), HTML(
-                 '<br><table style="width:20%" align="left">
+               conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", height = "600px"), 
+                                HTML(
+                                  '<br><p align = "left">Average Age Range for Whites: 77.5-80</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
+                                  <table style="width:80%" align="left">
+                                  <tr>
+                                  <td><p style="font-size:160%;">Average Age in General</p></td>
+                                  
+                                  <td><p style="font-size:160%;">79.4</p></td> 
+                                  </tr>
+                                  
+                                  <th><p style="font-size:160%;">Average Ages of Each Race</p></th>
+                                  <th><p style="font-size:160%;"> Native American: 74.6; African American: 74.7; White: 78.6;
+                                  Latino: 83.9; Asian American: 87.4</p></th> 
+                                  </tr>
+                                  <tr>
+                                  <td><p style="font-size:160%;"><b>Minimum Age of Each Race</p></td>
+                                  <td><p style="font-size:160%;">Native American: 68.2; African American: 71.6; Caucasian: 71.4; Latino: 75.4;
+                                  Asian American: 82</p><b/></td> 
+                                  </tr>
+                                  <tr>
+                                  <td><p style="font-size:160%;"><b>Maximum Age of Each Race</p></td>
+                                  <td><p style="font-size:160%;">African American: 79.7; Native American: 80.2; Caucasian: 84.3; Latino: 88.3;
+                                  Asian American: 89.4</p><b/></td> 
+                                  </tr>
+                                  </table>')
+                                ),
+               conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa", height = "600px"),HTML(
+                 '<br><p align = "left">Average Age Range for African Americans: 72.5-75</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
+                 <table style="width:80%" align="left">
                  <tr>
                  <td><p style="font-size:160%;">Average Age in General</p></td>
                  
-                 <td><p style="font-size:160%;">?</p></td> 
+                 <td><p style="font-size:160%;">79.4</p></td> 
                  </tr>
                  
-                 <th><p style="font-size:160%;">Race With Lowest Average Age Ranking</p></th>
-                 <th>?</th> 
+                 <th><p style="font-size:160%;">Average Ages of Each Race</p></th>
+                 <th><p style="font-size:160%;"> Native American: 74.6; African American: 74.7; White: 78.6;
+                 Latino: 83.9; Asian American: 87.4</p></th> 
                  </tr>
                  <tr>
-                 <td><p style="font-size:160%;">Race With Lowest Age</p></td>
-                 <td><p style="font-size:160%;">?</p></td> 
+                 <td><p style="font-size:160%;"><b>Minimum Age of Each Race</p></td>
+                 <td><p style="font-size:160%;">Native American: 68.2; African American: 71.6; Caucasian: 71.4; Latino: 75.4;
+                 Asian American: 82</p><b/></td> 
+                 </tr>
+                 <tr>
+                 <td><p style="font-size:160%;"><b>Maximum Age of Each Race</p></td>
+                 <td><p style="font-size:160%;">African American: 79.7; Native American: 80.2; Caucasian: 84.3; Latino: 88.3;
+                 Asian American: 89.4</p><b/></td> 
+                 </tr>
+                 </table>')),
+               conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa",height = "600px"),HTML(
+                 '<br><p align = "left">Average Age Range for Asian Americans: 87.5-90</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
+                 <table style="width:80%" align="left">
+                 <tr>
+                 <td><p style="font-size:160%;">Average Age in General</p></td>
+                 
+                 <td><p style="font-size:160%;">79.4</p></td> 
+                 </tr>
+                 
+                 <th><p style="font-size:160%;">Average Ages of Each Race</p></th>
+                 <th><p style="font-size:160%;"> Native American: 74.6; African American: 74.7; White: 78.6;
+                 Latino: 83.9; Asian American: 87.4</p></th> 
+                 </tr>
+                 <tr>
+                 <td><p style="font-size:160%;"><b>Minimum Age of Each Race</p></td>
+                 <td><p style="font-size:160%;">Native American: 68.2; African American: 71.6; Caucasian: 71.4; Latino: 75.4;
+                 Asian American: 82</p><b/></td> 
+                 </tr>
+                 <tr>
+                 <td><p style="font-size:160%;"><b>Maximum Age of Each Race</p></td>
+                 <td><p style="font-size:160%;">African American: 79.7; Native American: 80.2; Caucasian: 84.3; Latino: 88.3;
+                 Asian American: 89.4</p><b/></td> 
+                 </tr>
+                 </table>')),
+               conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na",height = "600px"),HTML(
+                 '<br><p align = "left">Average Age Range for Native Americans: 72.5-75</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
+                 <table style="width:80%" align="left">
+                 <tr>
+                 <td><p style="font-size:160%;">Average Age in General</p></td>
+                 
+                 <td><p style="font-size:160%;">79.4</p></td> 
+                 </tr>
+                 
+                 <th><p style="font-size:160%;">Average Ages of Each Race</p></th>
+                 <th><p style="font-size:160%;"> Native American: 74.6; African American: 74.7; White: 78.6;
+                 Latino: 83.9; Asian American: 87.4</p></th> 
+                 </tr>
+                 <tr>
+                 <td><p style="font-size:160%;"><b>Minimum Age of Each Race</p></td>
+                 <td><p style="font-size:160%;">Native American: 68.2; African American: 71.6; Caucasian: 71.4; Latino: 75.4;
+                 Asian American: 82</p><b/></td> 
+                 </tr>
+                 <tr>
+                 <td><p style="font-size:160%;"><b>Maximum Age of Each Race</p></td>
+                 <td><p style="font-size:160%;">African American: 79.7; Native American: 80.2; Caucasian: 84.3; Latino: 88.3;
+                 Asian American: 89.4</p><b/></td> 
+                 </tr>
+                 </table>')),
+               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", height = "600px"), HTML(
+                 '<br><p align = "left">Average Age Range for Latinos: 85-87.5</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
+                 <table style="width:80%" align="left">
+                 <tr>
+                 <td><p style="font-size:160%;">Average Age in General</p></td>
+                 
+                 <td><p style="font-size:160%;">79.4</p></td> 
+                 </tr>
+                 
+                 <th><p style="font-size:160%;">Average Ages of Each Race</p></th>
+                 <th><p style="font-size:160%;"> Native American: 74.6; African American: 74.7; White: 78.6;
+                 Latino: 83.9; Asian American: 87.4</p></th> 
+                 </tr>
+                 <tr>
+                 <td><p style="font-size:160%;"><b>Minimum Age of Each Race</p></td>
+                 <td><p style="font-size:160%;">Native American: 68.2; African American: 71.6; Caucasian: 71.4; Latino: 75.4;
+                 Asian American: 82</p><b/></td> 
+                 </tr>
+                 <tr>
+                 <td><p style="font-size:160%;"><b>Maximum Age of Each Race</p></td>
+                 <td><p style="font-size:160%;">African American: 79.7; Native American: 80.2; Caucasian: 84.3; Latino: 88.3;
+                 Asian American: 89.4</p><b/></td> 
                  </tr>
                  </table>')
-               ),
-               conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa", height = "600px")),
-               conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa",height = "600px")),
-               conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na",height = "600px")),
-               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", height = "600px"))),
+               )),
+      
 
       
       
