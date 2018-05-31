@@ -4,6 +4,7 @@ le_by_state <- read.csv("data/IHME_US_STATE_LIFE_EXPECTANCY_1987_2009.csv", stri
 le_at_birth_race <- read.csv("data/le_at_birth_race.csv", stringsAsFactors = FALSE)
 gni_le <- read.csv("data/wb_gni.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
 coverage_by_race <- read.csv("data/Health Insurance Coverage Type by Race.csv", stringsAsFactors = FALSE)
+coverage_by_race <- suppressWarnings(read.csv("data/wb_gni.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE))
 
 
 income_by_race <- as.data.frame(income_by_race)
@@ -39,10 +40,9 @@ le_2014 <- overview_le %>%
   filter(Year == "2014") %>% 
   select(Avg.Life.Expectancy.Years) # 78.9
 
-# Find correlation between GNI and LE
 
 gni_le <- gni_le %>%
-  select(-`Country Name`, -`Country Code`, -`Series Code`)
+  select(-`﻿Country Name`, -`Country Code`, -`Series Code`)
 
 gni <- gni_le %>% 
   filter(`Series Name` == "Adjusted net national income per capita (constant 2010 US$)")
