@@ -1,7 +1,5 @@
 source("data_wrangling.R")
 
-coverage_by_race <- read.csv("data/Health Insurance Coverage Type by Race.csv", stringsAsFactors = FALSE)
-
 uninsured_data <- coverage_by_race %>% 
   filter(Coverage.Type == "Uninsured", Data.Type == "Percent")
 

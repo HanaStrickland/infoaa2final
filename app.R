@@ -10,7 +10,8 @@ library(highcharter)
 library(shinyjs)
 library(shinythemes)
 library(scales)
-
+library(stringr)
+#library(magrittr)
 
 source("my_ui.R")
 source("my_server.R")

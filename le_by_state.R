@@ -1,13 +1,6 @@
-library(dplyr)
-library(highcharter)
-library(plotly)
-library(ggplot2)
-library(magrittr)
+le_by_state$State <- str_to_title(le_by_state$State)
 
-
-#reading in data from IHME US State Life Expectancy csv File
-life_expectancy <- read.csv("data/IHME_US_STATE_LIFE_EXPECTANCY_1987_2009_lowercase_Q4.csv", stringsAsFactors = FALSE)
-le_state <- as.data.frame(life_expectancy)
+le_state <- le_by_state
 
 #filtering the data frame to contain only state, year, male LE, female LE, and the change in LE for
 #both sexes between 1987-2009

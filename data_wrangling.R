@@ -1,39 +1,26 @@
 income_by_race <- read_xlsx("data/income_by_race.xlsx")
 le_national <- read_xlsx("data/life_expectancy_death_rates.xlsx")
-# pct_insurance_by_race <- read_xlsx("data/pct_insurance_by_race.xlsx")
-# le_by_state <- read.csv("data/IHME_US_STATE_LIFE_EXPECTANCY_1987_2009.csv", stringsAsFactors = FALSE)
-# le_by_income_state <- read.csv("data/health_ineq_online_table_5.csv", stringsAsFactors = FALSE)
+le_by_state <- read.csv("data/IHME_US_STATE_LIFE_EXPECTANCY_1987_2009.csv", stringsAsFactors = FALSE)
 le_at_birth_race <- read.csv("data/le_at_birth_race.csv", stringsAsFactors = FALSE)
-##Warning in read.table(file = file, header = header, sep = sep, quote = quote,  :
-##incomplete final line found by readTableHeader on 'data/wb_gni.csv'
-# us_gdp_le <- read.csv("data/world_bank_GDP_le.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
 gni_le <- read.csv("data/wb_gni.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
+coverage_by_race <- read.csv("data/Health Insurance Coverage Type by Race.csv", stringsAsFactors = FALSE)
+
 
 income_by_race <- as.data.frame(income_by_race)
 le_national <- as.data.frame(le_national)
+
+# pct_insurance_by_race <- read_xlsx("data/pct_insurance_by_race.xlsx")
+# le_by_income_state <- read.csv("data/health_ineq_online_table_5.csv", stringsAsFactors = FALSE)
+# us_gdp_le <- read.csv("data/world_bank_GDP_le.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
+
 # pct_insurance_by_race <- as.data.frame(pct_insurance_by_race)
+
 
 
 ################## 
 ### Question 1 ###
 ##################
 
-# us_gdp_le <- us_gdp_le %>% 
-#   select(-`Country Name`, -`Country Code`, -`Series Code`, -`2017`)
-# 
-# gdp <- us_gdp_le %>% 
-#   filter(`Series Name` == "GDP per capita (current US$)")
-# 
-# le <- us_gdp_le %>% 
-#   filter(`Series Name` == "Life expectancy at birth, total (years)")
-# 
-# gdp_long <- gather(gdp, "Year", "GDP", `1968`:`2016`)
-# 
-# le_long <- gather(le, "Year", "Life Expectancy", `1968`:`2016`)
-# 
-# gdp_by_le <- left_join(gdp_long, le_long, by = "Year")
-
-######
 
 # Find correlation between GNI and LE
 
@@ -55,24 +42,7 @@ gni_by_le <- left_join(gni_long, le_long, by = "Year")
 correlation_GNI_le <- cor(gni_by_le$`GNI Per Capita`, gni_by_le$`Life Expectancy`)
 correlation_GNI_le <- paste(round(correlation_GNI_le*100,digits=2),"%",sep="")
 
-# plot_interactive <- gdp_by_le %>%
-#   plot_ly(
-#     x = ~ gdp_by_le$`Life Expectancy`,
-#     y = ~ gdp_by_le$GDP,
-#     frame = gdp_by_le$Year
-#   ) %>%
-#   add_markers() %>%
-#   #add_text(textposition = "left") %>% 
-#   layout(showlegend = FALSE) %>%
-#   layout(
-#     title = "GDP per Capita by Life Expectancy",
-#     xaxis = list(title = "Life Expectancy"),
-#     yaxis = list(title = "GDP per Capita")
-#   ) 
-# 
-# 
-# correlation_GDPperCapita_le <- cor(gdp_by_le$GDP, gdp_by_le$`Life Expectancy`) #0.9647728
-# correlation_GDPperCapita_le <- paste(round(correlation_GDPperCapita_le*100,digits=2),"%",sep="")
+
 
 # Wrangle data for Q1
 
