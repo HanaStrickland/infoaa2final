@@ -5,6 +5,7 @@ le_at_birth_race <- read.csv("data/le_at_birth_race.csv", stringsAsFactors = FAL
 gni_le <- read.csv("data/wb_gni.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
 # Be aware of Mac to Windows conversion. Work was done on a Mac
 coverage_by_race <- read.csv("data/Health Insurance Coverage Type by Race.csv", stringsAsFactors = FALSE)
+coverage_by_race <- suppressWarnings(read.csv("data/wb_gni.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE))
 
 
 income_by_race <- as.data.frame(income_by_race)
@@ -39,6 +40,8 @@ le_2014 <- overview_le %>%
   filter(Year == "2014") %>% 
   select(Avg.Life.Expectancy.Years) # 78.9
 
+<<<<<<< HEAD
+=======
 overview_slope <- lm(overview_le$Year ~ overview_le$Avg.Life.Expectancy.Years)
 
 overview_slope <- coefficients(overview_slope)
@@ -46,9 +49,10 @@ overview_slope <- coefficients(overview_slope)
 overview_slope <- round(overview_slope[2], digits = 2)
 
 # Find correlation between GNI and LE
+>>>>>>> c6f7c782c698f79eb6a314c5ece397edbb7bed7d
 
 gni_le <- gni_le %>%
-  select(-`Country Name`, -`Country Code`, -`Series Code`)
+  select(-`﻿Country Name`, -`Country Code`, -`Series Code`)
 
 gni <- gni_le %>% 
   filter(`Series Name` == "Adjusted net national income per capita (constant 2010 US$)")
