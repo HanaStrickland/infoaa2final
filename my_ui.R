@@ -65,7 +65,7 @@ The sharp drop in life expectancy in 1918 is do to the ",
                                              a("Spanish Flu", href="https://virus.stanford.edu/uda/"), 
 " which killed 20 to 40 million people.
                  This webpage will explore different elements of life expectancy such as race, income, 
-                 insurance coverage, and state. We hope that users will come away with a better understanding 
+                 insurance coverage, and state information. We hope that users will come away with a better understanding 
                  of how these elements influence life expectancy."),
                                            plotlyOutput("overview"),
                                            p("The data use to create this visual comes from the ",
@@ -265,7 +265,10 @@ For all races, average median income and life expectancy is ", avg_median_income
                  lowest uninsured demographic. In 2016, uninsured nationally among whites was ", white_uninsured,
                                              " and", his_uninsured, " among Hispanics. Asians had the next lowest uninsured rate ", asian_uninsured,
                                              ". This was followed by African Americans with a rate of", afam_uninsured, "and Others or Multiple Races
-                 with a rate of", other_uninsured, "."),
+                 with a rate of", other_uninsured, ". From the data analysis we performed, we can infer that minorities are more likely to be uninsured than white people.
+                                             Connecting the findings from this question to our other three questions analyzing income and life expectancy by race,
+                                             the evidence allows us to make the conclusion that minorities tend to be poorer and live shorter
+                                             lives than white people in the United States."),
                                            plotOutput("plot3"),
                                            br(),
                                            br(),
@@ -283,7 +286,15 @@ For all races, average median income and life expectancy is ", avg_median_income
 Median life exepctancy in 1987 was ", strong(median_le_male_1987), " for males and ", strong(median_le_female_1987), " for females.
 Median life expectancy in 2009 was ", strong(median_le_male_2009)," for males and ", strong(median_le_female_2009), " for females.
 What this tells us is that women tend to live longer than men, but both men and women saw life expectancy from 1987 to 2009.
-                 Median change in average life expectancy was ", strong(median_change_in_le), " years."
+                 Median change in average life expectancy was ", strong(median_change_in_le), " years.
+                                             From the data analysis that we performed, we can infer that the statistically significant
+                                             increase in average life expectancy for the District of Columbia might be coming from the
+                                             social, economic, and political factors that surround this area. However, from external
+                                             source [3], a different data set outlined that most of the life expectancy change is from
+                                             an increase in white male/female life expectancy. There is a stark difference in health
+                                             status and life expectancy between African Americans and Whites in the District of Columbia
+                                             where increase in life expectancy has decreased in recent years to 68 for African Americans
+                                             and increased to 83 for Whites."
                                            ),
                                            p("Click on a state in the legend to see more information about that state."),
                                            sliderInput("avg_le",
@@ -297,8 +308,28 @@ What this tells us is that women tend to live longer than men, but both men and 
                                            p("Data for this visualization comes from the ",
                                              a("Institute for Health Metrics and Evaluation", 
                                                href="http://ghdx.healthdata.org/ihme_data"), "."),
+                                           p("The first map shows the life expectancies for each state for the year 1987.
+                                             According to the map, the highest life expectancy is in Minnesota with an average of 77.30 years.
+                                             The lowest life expectancy is in Mississippi and South Carolina with an average of 72.90 years."),
                                            highchartOutput("map1q4", width = "100%", height = "400px"),
-                                           highchartOutput("map2q4", width = "100%", height = "400px")
+                                           p("The second map shows the life expectancies for each state for the year 2009. According to the map,
+                                             the highest life expectancy again is in Minnesota with an average of 80.90 years, and the lowest again
+                                             is in Mississippi with an average of 75.05 years. From 1987 to 2009, the life expectancy has increased
+                                             by about 3 years, but Minnesota and Mississippi still continue to hold their record of being the
+                                             states with the highest/lowest life expectancies."),
+                                           highchartOutput("map2q4", width = "100%", height = "400px"),
+                                           p("Why might Minnesota be the state with the highest life expectancy? It was one of the states to ban smoking
+                                              in public places and spends a large amount of their budget on parks and other recreational activities. This
+                                              promotes many people to get physical activity and to maintain a healthy lifestyle. Why might Mississippi be
+                                              the state with the lowest life expectancy? Mississippi has the highest motor-vehicle death rate in the nation
+                                              at 21.3 per 100,000 people, has the highest suicide rate (in Hancock County), 35% of the population does not
+                                              exercise regularly, and has the highest obesity and poverty rate in the country. Due to being the poorest state,
+                                              healthcare neccessities become difficult for people to access, thus leading to the decrease of overall life expectancy. Sources used: ",
+                                             a("1", href="https://www.cnn.com/2018/04/10/health/states-life-expectancy-study/index.html"),
+                                             a("2", href="https://www.cheatsheet.com/culture/state-shortest-life-expectancy.html/?a=viewall"),
+                                             a("3", href="http://dcist.com/2016/07/life_expectancy.php"))
+                                               
+                                           
                                            
                                   ),
                                   id = "tabselected"

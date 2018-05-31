@@ -11,7 +11,7 @@ library(shinyjs)
 library(shinythemes)
 library(scales)
 library(stringr)
-#library(magrittr)
+library(rsconnect)
 
 source("my_ui.R")
 source("my_server.R")
