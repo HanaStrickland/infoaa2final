@@ -70,27 +70,9 @@ gni_by_le <- left_join(gni_long, le_long, by = "Year")
 
 correlation_GNI_le <- cor(gni_by_le$`GNI Per Capita`, gni_by_le$`Life Expectancy`)
 correlation_GNI_le <- paste(round(correlation_GNI_le*100,digits=2),"%",sep="")
+
+
 # Combine income and le dataframes
-
-plot_interactive <- pct_uninsured %>%
-  plot_ly(
-    x = ~ pct_uninsured$Race,
-    y = ~ pct_uninsured$Not.Covered,
-    frame = pct_uninsured$Year,
-    text = pct_uninsured$Race
-  ) %>%
-  add_markers() %>%
-  add_text(textposition = "left") %>% 
-  layout(showlegend = FALSE) %>%
-  layout(
-    title = "Title",
-    xaxis = list(title = "X Title"),
-    yaxis = list(title = "Y Title")
-  ) 
-
-
-
-
 
 income_black_white <- income_by_race %>%
   filter(Race %in% c("All Races", "White Alone", "Black Alone")) %>%

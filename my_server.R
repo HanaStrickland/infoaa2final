@@ -32,7 +32,7 @@ server <- function(input, output) {
     
     plot1b <- ggplot(data = income_by_le) +
       geom_point(mapping = aes(x = Year, y = median_income,  color = Race)) +
-      labs(title = "Median Income Over Tiime",
+      labs(title = "Median Income Over Time",
            x = "Year",
            y = "Median Income") 
     ggplotly(plot1b, tooltip = c("Year", "Race", "median_income"))
@@ -43,7 +43,7 @@ server <- function(input, output) {
   output$plotly1c <- renderPlotly({
     plot1c <- ggplot(data = income_by_le) +
       geom_point(mapping = aes(x = Year, y = Avg.Life.Expectancy.Years,  color = Race)) +
-      labs(title = "Average Life Expectancy Over Tiime",
+      labs(title = "Average Life Expectancy Over Time",
            x = "Year",
            y = "Average Life Expectancy")
     
@@ -115,6 +115,11 @@ server <- function(input, output) {
     plot2asa + geom_point()
     ggplotly(plot2asa, tooltip="region")
   })
+  
+  
+  ################## 
+  ### Question 2 ###
+  ##################
   
   output$plot2na <- renderPlotly({
     
@@ -288,6 +293,11 @@ server <- function(input, output) {
     ggplotly(plot3ch, tooltip="region")
     plot3ch
   })
+  
+  
+  ################## 
+  ### Question 4 ###
+  ##################
   
   output$plot4 <- renderPlotly({
     set.seed(955)

@@ -6,11 +6,11 @@ ui <- fluidPage(
   sidebarPanel(
     
     ## conditionalPanel() functions for selected tab
-    conditionalPanel(condition = "input.tabselected==1",
+    conditionalPanel(condition = "input.tabselected == 1",
                      selectInput("year", label = "Select Year for Table", choices = years)
     ),
     conditionalPanel(
-      condition = "input.tabselected==2",
+      condition = "input.tabselected == 2",
       selectInput("location", label = "Select Location (for Plot 2)", choices = locations),
       radioButtons("choice", "Choose a Race", choices = c(
         "White" = 1,
@@ -22,9 +22,12 @@ ui <- fluidPage(
     ),
     
     conditionalPanel(
-      condition = "input.tabselected==3",
+      condition = "input.tabselected == 3",
       radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3))
       
+    ),
+    conditionalPanel(
+      condition = "input.tabselect == 4"
     )
   ),
   mainPanel(
@@ -63,10 +66,11 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
                plotlyOutput("plotly1c")),
       
       
-      # Question 2 Plots
+      ################## 
+      ### Question 2 ###
+      ##################      
       
-      
-      tabPanel("Question 2", value=2, align = "center",
+      tabPanel("Question 2", value = 2, align = "center",
                
                conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", width = "887px", height = "591px")),
                conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa", width = "887px", height = "591px")),
@@ -76,14 +80,12 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
                dataTableOutput("table2")),
       
       
-      # Question 3 Visualizations
-      
+
       
       
       ################## 
       ### Question 3 ###
       ##################
-      # Question 3 Plots
       tabPanel("Question 3",
                value = 3,
                conditionalPanel(condition = "input.choice2==1", plotlyOutput("plot3cw")),
@@ -92,6 +94,9 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
                plotOutput("plot3a"), plotOutput("plot3b")
       ),
       
+      ################## 
+      ### Question 4 ###
+      ##################
       tabPanel("Question 4", value=4,
                #plotOutput(map_1987),
                #plotOutput(map_2009),
