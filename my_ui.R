@@ -123,7 +123,7 @@ For all races, average median income and life expectancy is ", avg_median_income
                                   
                                   
                                   tabPanel(strong("Heat Map of Life Expectancy"), value = 2, align = "center",
-                                           conditionalPanel(condition = "input.choice==1", plotlyOutput("plot2white", height = "600px"), 
+                                           conditionalPanel(condition = "input.choice==1", plotlyOutput("plot2white", height = "700px"), 
                                                             HTML(
                                                               '<br><p align = "left">Average Age Range for Whites: 77.5-80</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
                                   <table style="width:80%" align="left">
@@ -149,7 +149,7 @@ For all races, average median income and life expectancy is ", avg_median_income
                                   </tr>
                                   </table>')
                                            ),
-                                           conditionalPanel(condition = "input.choice==2", plotlyOutput("plot2afa", height = "600px"),HTML(
+                                           conditionalPanel(condition = "input.choice==2", plotlyOutput("plot2afa", height = "700px"),HTML(
                                              '<br><p align = "left">Average Age Range for African Americans: 72.5-75</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
                  <table style="width:80%" align="left">
                  <tr>
@@ -173,7 +173,7 @@ For all races, average median income and life expectancy is ", avg_median_income
                  Asian American: 89.4</p><b/></td> 
                  </tr>
                  </table>')),
-                                           conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa",height = "600px"),HTML(
+                                           conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa",height = "700px"),HTML(
                                              '<br><p align = "left">Average Age Range for Asian Americans: 87.5-90</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
                  <table style="width:80%" align="left">
                  <tr>
@@ -197,7 +197,7 @@ For all races, average median income and life expectancy is ", avg_median_income
                  Asian American: 89.4</p><b/></td> 
                  </tr>
                  </table>')),
-                                           conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na",height = "600px"),HTML(
+                                           conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na",height = "700px"),HTML(
                                              '<br><p align = "left">Average Age Range for Native Americans: 72.5-75</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
                  <table style="width:80%" align="left">
                  <tr>
@@ -221,7 +221,7 @@ For all races, average median income and life expectancy is ", avg_median_income
                  Asian American: 89.4</p><b/></td> 
                  </tr>
                  </table>')),
-                                           conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", height = "600px"), HTML(
+                                           conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", height = "700px"), HTML(
                                              '<br><p align = "left">Average Age Range for Latinos: 85-87.5</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
                  <table style="width:80%" align="left">
                  <tr>
