@@ -7,6 +7,8 @@ library(shiny)
 library(plotly)
 library(ggthemes)
 library(highcharter)
+library(shinyjs)
+library(shinythemes)
 
 
 source("my_ui.R")
