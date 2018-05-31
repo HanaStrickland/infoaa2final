@@ -46,11 +46,6 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                                 
                                 conditionalPanel(
                                   condition = "input.tabselect == 4"
-                                  # sliderInput("avg_le",
-                                  #             label = "Slide to filter for average life expectancy",
-                                  #             min = le_range[1],
-                                  #             max = le_range[2],
-                                  #             value = le_range)
                                 )
                               ),
                               mainPanel(
@@ -67,12 +62,18 @@ The sharp drop in life expectancy in 1918 is do to the ",
                  This webpage will explore different elements of life expectancy such as race, income, 
                  insurance coverage, and state. We hope that users will come away with a better understanding 
                  of how these elements influence life expectancy."),
+h3("Questions we considered include:"), 
+p("1) What is the correlation between income and life expectancy?"), 
+p("2) what is the correlation between race and life expectancy?"),
+  p("3) What is the correlation between uninsured and life expectancy?"), 
+  p("4) How do life expectancies compare between different states?"),
                                            plotlyOutput("overview"),
                                            p("The data use to create this visual comes from the ",
                                              a("National Center for Health Statistics", href="https://data.cdc.gov/NCHS/NCHS-Death-rates-and-life-expectancy-at-birth/w9j2-ggv5/data")
                                            )
+)
                                            
-                                  ),
+                                  ,
                                   tabPanel(strong("Life Expectancy, Median Income, and Race"), value = 1, 
                                            
                                            p("If we take the average of median income and life expectancy between 2002 and 2016, we see that the median 
@@ -286,11 +287,7 @@ What this tells us is that women tend to live longer than men, but both men and 
                  Median change in average life expectancy was ", strong(median_change_in_le), " years."
                                            ),
                                            p("Click on a state in the legend to see more information about that state."),
-                                           sliderInput("avg_le",
-                                                       label = "Slide to filter for average life expectancy",
-                                                       min = le_range[1],
-                                                       max = le_range[2],
-                                                       value = le_range),
+  
                                            plotlyOutput("plot4"),
                                            br(),
                                            br(),

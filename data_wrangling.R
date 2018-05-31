@@ -3,6 +3,7 @@ le_national <- read_xlsx("data/life_expectancy_death_rates.xlsx")
 le_by_state <- read.csv("data/IHME_US_STATE_LIFE_EXPECTANCY_1987_2009.csv", stringsAsFactors = FALSE)
 le_at_birth_race <- read.csv("data/le_at_birth_race.csv", stringsAsFactors = FALSE)
 gni_le <- read.csv("data/wb_gni.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
+# Be aware of Mac to Windows conversion. Work was done on a Mac
 coverage_by_race <- read.csv("data/Health Insurance Coverage Type by Race.csv", stringsAsFactors = FALSE)
 
 
