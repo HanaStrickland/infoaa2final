@@ -12,7 +12,6 @@ le_national <- as.data.frame(le_national)
 
 
 
-
 ################## 
 ### Question 1 ###
 ##################
@@ -40,6 +39,16 @@ le_2014 <- overview_le %>%
   filter(Year == "2014") %>% 
   select(Avg.Life.Expectancy.Years) # 78.9
 
+<<<<<<< HEAD
+=======
+overview_slope <- lm(overview_le$Year ~ overview_le$Avg.Life.Expectancy.Years)
+
+overview_slope <- coefficients(overview_slope)
+
+overview_slope <- round(overview_slope[2], digits = 2)
+
+# Find correlation between GNI and LE
+>>>>>>> c6f7c782c698f79eb6a314c5ece397edbb7bed7d
 
 gni_le <- gni_le %>%
   select(-`﻿Country Name`, -`Country Code`, -`Series Code`)
