@@ -4,7 +4,8 @@ server <- function(input, output) {
   source("data_wrangling.R")
   source("data_processing.R")
   source("le_by_state.R")
-  
+  # In case you need to hide them for some reason
+
   # Server stuff
   output$plot1a <- renderPlot({
     

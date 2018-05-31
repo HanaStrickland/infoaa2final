@@ -1,6 +1,14 @@
-ui <- fluidPage(
-  
+ui <- fluidPage(theme = shinytheme("superhero"),
+ headerPanel(HTML('<center>Working Title: Life Expectancies in the U.S.A</center>'), 
+             windowTitle = "Working Title: Life Expectancies in the U.S.A"),
+             
+                
+  sidebarLayout(position = "left",
+                fluid = TRUE,
   sidebarPanel(
+  #  useShinyjs()
+    width = 2,
+    
     
     ## conditionalPanel() functions for selected tab
     conditionalPanel(condition = "input.tabselected==1"),
@@ -29,11 +37,11 @@ ui <- fluidPage(
       
       # Question 2 Plots
       tabPanel("Question 2", value=2, align = "center",
-               conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", width = "887px", height = "591px")),
-               conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa", width = "887px", height = "591px")),
-               conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa", width = "887px", height = "591px")),
-               conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na", width = "887px", height = "591px")),
-               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", width = "887px", height = "591px"))),
+               conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", height = "600px")),
+               conditionalPanel(condition="input.choice==2", plotlyOutput("plot2afa", height = "600px")),
+               conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa","600px")),
+               conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na",height = "600px")),
+               conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat","600px"))),
       
       tabPanel("Question 3", value = 3,
                conditionalPanel(condition="input.choice2==1", plotlyOutput("plot3cw")),
@@ -51,7 +59,7 @@ ui <- fluidPage(
       id = "tabselected"
     )
   )
-)
+))
 
 
 
