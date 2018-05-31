@@ -18,14 +18,7 @@ server <- function(input, output) {
     
   })
   
-  results_le_slider <- reactive({
-    results <- trend[trend$avg.life.expectancy == input$avg_le]
-    
-    results <- results %>%
-      filter(le_range >= input$avg_le[1] & le_range <= input$avg_le[2])
-    
-    results
-  })
+ 
   
 
   output$table1 <- renderDataTable({
@@ -224,9 +217,7 @@ server <- function(input, output) {
   
   output$plot2lat <- renderPlotly({
     
-    get_result <- results_le_slider()
-    
-    plot2lat <- ggplot(data = get_result) +
+    plot2lat <- ggplot(data = new_data) +
       geom_polygon(aes(x = long, y = lat, group = group, fill =
                          cut(new_data$Latino, seq(65, 90, by = 2.5), include.lowest = TRUE))) + 
       scale_fill_manual(name = "Age Range", values = c("#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"), na.value = "#636363") +
@@ -257,17 +248,29 @@ server <- function(input, output) {
   ### Question 4 ###
   ##################
   
+  results_le_slider <- reactive({
+    #range_results <- le_range >= input$avg_le[1] & le_range <= input$avg_le[2]
+    #results <- trend[trend$avg.life.expectancy == range_results, ]
+    
+    results <- trend %>%
+      filter(avg.life.expectancy >= input$avg_le[1] & avg.life.expectancy <= input$avg_le[2])
+    
+    results
+  })
+  
   output$plot4 <- renderPlotly({
+    
     set.seed(955)
-    trend_plot <- ggplot(data = trend, aes(x = State, y = avg.life.expectancy, color = State)) +
-      geom_point(shape = 11) + 
-      theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) + 
+    trend_plot <- ggplot(data = results_le_slider(), aes(x = State, y = avg.life.expectancy, color = State)) +
+      geom_point(shape = 11) +
+      theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) +
       labs(
         title = "Life Expectancy Change From 1987 to 2009",
         x = "States",
         y = "Change in Life Expectancy (in years)")
     trend_plot <- ggplotly(trend_plot)
     trend_plot
+    
   })
   
   output$map1q4 <- renderHighchart({

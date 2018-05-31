@@ -34,8 +34,8 @@ ui <- fluidPage(theme = shinytheme("superhero"),
       ),
        
     conditionalPanel(
-      condition = "input.tabselect == 4"#,
-      # sliderInput("avg_le", 
+      condition = "input.tabselect == 4"
+      # sliderInput("avg_le",
       #             label = "Slide to filter for average life expectancy",
       #             min = le_range[1],
       #             max = le_range[2],
@@ -235,7 +235,7 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
       ##################
       tabPanel("Question 4", value=4,
                p("Click on a state in the legend to see more."),
-               sliderInput("avg_le", 
+               sliderInput("avg_le",
                            label = "Slide to filter for average life expectancy",
                            min = le_range[1],
                            max = le_range[2],

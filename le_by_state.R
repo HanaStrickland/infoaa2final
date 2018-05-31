@@ -47,6 +47,8 @@ le_state_2009 <- mutate(le_state_2009, avg.life.expectancy = (Male.life.expectan
 # map_2009
 
 #dataframe contains the trend between 1987-2009
+
+
 trend <- le_state %>% 
   select(State, Male.life.expectancy.change.1987.to.2009..years., Female.life.expectancy.change.1987.to.2009..years.)
 trend <- mutate(trend, avg.life.expectancy = (Male.life.expectancy.change.1987.to.2009..years. +
