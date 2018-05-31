@@ -150,7 +150,9 @@ For all races, average median income and life expectancy is ", avg_median_income
                                   </table>')
                                            ),
                                            conditionalPanel(condition = "input.choice==2", plotlyOutput("plot2afa", height = "700px"),HTML(
-                                             '<br><p align = "left">Average Age Range for African Americans: 72.5-75</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
+                                             '<br><p align = "left">Average Age Range for African Americans: 72.5-75</p>
+<br><p>African Americans in the U.S.A have one of the lowest life expectancies. This may be attributed to their median income, which is 
+also among the lowest at 38,145. </p><br><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
                  <table style="width:80%" align="left">
                  <tr>
                  <td><p style="font-size:160%;">Average Age in General</p></td>
