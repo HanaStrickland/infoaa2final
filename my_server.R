@@ -18,11 +18,6 @@ server <- function(input, output) {
     
   })
   
-  results_data2 <- reactive({
-    results <- le_at_birth_race_long[le_at_birth_race_long$region == input$location, ]
-    results
-  })
-  
 
   output$table1 <- renderDataTable({
     get_result <- results_data1()

@@ -20,7 +20,6 @@ ui <- fluidPage(theme = shinytheme("superhero"),
     ),
     conditionalPanel(
       condition = "input.tabselected == 2",
-      selectInput("location", label = "Select Location (for Plot 2)", choices = locations),
       radioButtons("choice", "Choose a Race", choices = c(
         "White" = 1,
         "African American" = 2,
