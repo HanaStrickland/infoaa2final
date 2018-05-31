@@ -1,5 +1,7 @@
 source("data_wrangling.R")
 source("data_processing.R")
+source("le_by_state.R")
+
 
 ui <- fluidPage(
   
@@ -20,12 +22,13 @@ ui <- fluidPage(
         "Latino" = 5
       ))
     ),
-    
+
     conditionalPanel(
       condition = "input.tabselected == 3",
       radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3))
-      
+
     ),
+  
     conditionalPanel(
       condition = "input.tabselect == 4"
     )
@@ -35,8 +38,11 @@ ui <- fluidPage(
     tabsetPanel(
       tabPanel("Question 1", value = 1, 
                
-               p("Black people in the US have a significantly lower median income and 
-                              life expectancy than white people and all races. White people in the US 
+               p("If we take the average of median income and life expectancy between 2002 and 2016, we see that the median 
+income and life expectancy for black people is ", avg_median_income_black_string, " and ", avg_le_black, " years, respectively.
+For white people, average median income and life expectancy is $", avg_median_income_white_string, " and ", avg_le_white," years respectively.
+For all races, average median income and life expectancy is $", avg_median_income_all_string," and ",avg_le_all, "respectively."),
+                              p("Black people in the US have a significantly lower median income and life expectancy than white people and all races. White people in the US 
                  have a slightly higher median income and life expectancy than all races. 
                  If we compare trends over time, there does not seem to be a correlation 
                  between median income and average life expectancy. Average life expectancy 
@@ -94,16 +100,18 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
                plotOutput("plot3a"), plotOutput("plot3b")
       ),
       
-      ################## 
+      ##################
       ### Question 4 ###
       ##################
       tabPanel("Question 4", value=4,
                #plotOutput(map_1987),
                #plotOutput(map_2009),
-               plotlyOutput("plot4"),
-               highchartOutput("map1q4", width = "100%", height = "500px"))
+               plotlyOutput("plot4")
+               #highchartOutput("map1q4", width = "100%", height = "500px"))
     ),
     id = "tabselected"
   )
 )
+)
+
 
