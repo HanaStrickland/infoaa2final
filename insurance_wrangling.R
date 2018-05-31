@@ -1,96 +1,9 @@
-library(dplyr)
-library(ggplot2)
-library("maps")
-library(tidyr)
-library("readxl")
-library(shiny)
-library(plotly)
-
 source("data_wrangling.R")
-
-# This file contains the data processing and visualizations for question 3 on our Project Proposal:
-# What are some meaningful correlations between quality of health insurance coverage (private
-# government, private employee, etc.) based on race/gender?
-
-# The data worked with comes from the Henry J Kaiser Family Foundation and from the Health
-# Inequality Project, found at:
-# https://www.kff.org/statedata/
-# https://healthinequality.org/data/
-
-# read in race-organized data files
-total_pop_health_cov <- read.csv("data/health_ins_total_pop_coverage.csv", stringsAsFactors = FALSE)
-medicare_by_race_data <- read.csv("data/dist_medicare_benef_by_race.csv", stringsAsFactors = FALSE)
-dist_uninsured_by_race <- read.csv("data/dist_uninsured_by_race.csv", stringsAsFactors = FALSE)
-dist_medicaid_by_race <- read.csv("data/dist_medicaid_by_race.csv", stringsAsFactors = FALSE)
-dist_employer_coverage_by_race <- read.csv("data/dist_employer_coverage_by_race.csv", stringsAsFactors = FALSE)
-
-# read in gender-organized data files
-pct_men_poor_health <- read.csv("data/pct_adult_men_poor_health_status.csv", stringsAsFactors = FALSE)
-pct_women_poor_health <- read.csv("data/pct_adult_women_poor_health_status.csv", stringsAsFactors = FALSE)
-
-# get state data for map visualizations
-state_data <- map_data('state')
-
-# data clean up
-medicare_by_race_data <- medicare_by_race_data[, -6]
-total_pop_health_cov <- total_pop_health_cov[1:52, -8]
-dist_uninsured_by_race <- dist_uninsured_by_race[1:52, -6]
-dist_medicaid_by_race <- dist_medicaid_by_race[1:52, -6]
-dist_employer_coverage_by_race <- dist_employer_coverage_by_race[1:52, -6]
-pct_men_poor_health <- pct_men_poor_health[1:55, -9]
-pct_women_poor_health <- pct_women_poor_health[1:55, -9]
-
-dist_uninsured_by_race <- dist_uninsured_by_race %>%
-  mutate(Location = tolower(Location))
-dist_uninsured_by_race <- rename(dist_uninsured_by_race, region = Location)
-
-# testing out map visualizations with dist data
-state_dist_uninsured_by_race <- left_join(state_data, dist_uninsured_by_race)
-
-# more clean-up
-state_dist_uninsured_by_race$White[state_dist_uninsured_by_race$White %in% "N/A"] <- "0"
-state_dist_uninsured_by_race[state_dist_uninsured_by_race == 0] <- NA
-state_dist_uninsured_by_race$White <- as.numeric(state_dist_uninsured_by_race$White)
-
-state_dist_uninsured_by_race$Black[state_dist_uninsured_by_race$Black %in% "N/A"] <- "0"
-state_dist_uninsured_by_race[state_dist_uninsured_by_race == 0] <- NA
-state_dist_uninsured_by_race$Black <- as.numeric(state_dist_uninsured_by_race$Black)
-
-state_dist_uninsured_by_race$Hispanic[state_dist_uninsured_by_race$Hispanic %in% "N/A"] <- "0"
-state_dist_uninsured_by_race[state_dist_uninsured_by_race == 0] <- NA
-state_dist_uninsured_by_race$Hispanic <- as.numeric(state_dist_uninsured_by_race$Hispanic)
-
-state_dist_uninsured_by_race$Other[state_dist_uninsured_by_race$Other %in% "N/A"] <- "0"
-state_dist_uninsured_by_race[state_dist_uninsured_by_race == 0] <- NA
-state_dist_uninsured_by_race$Other <- as.numeric(state_dist_uninsured_by_race$Other)
-
-# pct_insurance_by_race <- read_xlsx("data/pct_insurance_by_race.xlsx")
-# pct_insurance_by_race <- as.data.frame(pct_insurance_by_race)
-# le_national <- read_xlsx("data/life_expectancy_death_rates.xlsx")
-# le_national <- as.data.frame(le_national)
-# 
-# 
-# pct_uninsured <- pct_insurance_by_race %>% 
-#   select(Year, Race, Sex, Not.Covered) %>% 
-#   filter(Race %in% c("All Races", "Black Alone", "White Alone"), 
-#          Sex == "Both Sexes")
-# 
-# pct_uninsured_wide <- spread(pct_uninsured, "Race", "Not.Covered")
-# 
-# colnames(pct_uninsured_wide) <- c("Year", "Sex", "All Races", "Black", "White")
-# 
-# pct_uninsured <- gather(pct_uninsured_wide, key = "Race", value = "Percent.Uninsured", "All Races", "Black", "White" )
-# 
-# 
-# 
-# le_by_uninsured <- left_join(pct_uninsured, le_national, by = c("Year", "Sex", "Race"))
-
-
 
 coverage_by_race <- read.csv("data/Health Insurance Coverage Type by Race.csv", stringsAsFactors = FALSE)
 
 uninsured_data <- coverage_by_race %>% 
-  filter(Coverage.Type == "Uninsured", Data.Type == "Percent", Location != "United States") 
+  filter(Coverage.Type == "Uninsured", Data.Type == "Percent")
 
 colnames(uninsured_data) <- c("Fips", "Location", "Coverage Type", "Race/Ethnicity", "Year","Data.Type",       
                               "Data", "MOE"  )
@@ -99,3 +12,55 @@ colnames(uninsured_data) <- c("Fips", "Location", "Coverage Type", "Race/Ethnici
 multiply_by_100 <- as.numeric(uninsured_data$Data) * 100
 
 uninsured_data$Data <- multiply_by_100
+
+uninsured_data_national <- uninsured_data %>% 
+  filter(Location == "United States")
+
+
+uninsured_data <- uninsured_data %>% 
+  filter(Location != "United States")
+
+
+# uninsured by race in 2016, national
+
+his_uninsured <- uninsured_data_national %>% 
+  filter(`Race/Ethnicity` == "Hispanic / Latino", Year == "2016") %>% 
+  select(Data)
+
+his_uninsured <- his_uninsured[1,1] #17.927
+his_uninsured <- paste(his_uninsured, "%", sep = "")
+
+
+other_uninsured <- uninsured_data_national %>% 
+  filter(`Race/Ethnicity` == "Other / Multiple Races", Year == "2016") %>% 
+  select(Data)
+
+other_uninsured <- other_uninsured[1,1] #9.72
+other_uninsured <- paste(other_uninsured, "%", sep = "")
+
+
+afam_uninsured <- uninsured_data_national %>% 
+  filter(`Race/Ethnicity` == "African-American / Black", Year == "2016") %>% 
+  select(Data)
+
+afam_uninsured <- afam_uninsured[1,1] # 9.555
+afam_uninsured <- paste(afam_uninsured, "%", sep = "")
+
+
+asian_uninsured <- uninsured_data_national %>% 
+  filter(`Race/Ethnicity` == "Asian", Year == "2016") %>% 
+  select(Data)
+
+asian_uninsured <- asian_uninsured[1,1] #6.599
+asian_uninsured <- paste(asian_uninsured, "%", sep = "")
+
+
+white_uninsured <- uninsured_data_national %>% 
+  filter(`Race/Ethnicity` == "White", Year == "2016") %>% 
+  select(Data)
+
+white_uninsured <- white_uninsured[1,1] #5.701
+white_uninsured <- paste(white_uninsured, "%", sep = "")
+
+
+
