@@ -31,6 +31,13 @@ overview_plot <- ggplot(overview_le) +
         legend.position = "none") +
   labs(x = "Year", y = "Average Life Expectancy")
 
+le_1900 <- overview_le %>% 
+  filter(Year == "1900") %>% 
+  select(Avg.Life.Expectancy.Years) # 47.3
+
+le_2014 <- overview_le %>% 
+  filter(Year == "2014") %>% 
+  select(Avg.Life.Expectancy.Years) # 78.9
 
 # Find correlation between GNI and LE
 
@@ -162,3 +169,8 @@ le_at_birth_race_long <- le_at_birth_race %>%
          "Native.American")
 
 locations <- unique(le_at_birth_race_long$region)
+
+
+
+
+
