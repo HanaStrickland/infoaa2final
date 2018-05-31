@@ -7,7 +7,7 @@ le_at_birth_race <- read.csv("data/le_at_birth_race.csv", stringsAsFactors = FAL
 ##Warning in read.table(file = file, header = header, sep = sep, quote = quote,  :
 ##incomplete final line found by readTableHeader on 'data/wb_gni.csv'
 # us_gdp_le <- read.csv("data/world_bank_GDP_le.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
-#gni_le <- read.csv("data/wb_gni.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
+gni_le <- read.csv("data/wb_gni.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
 
 income_by_race <- as.data.frame(income_by_race)
 le_national <- as.data.frame(le_national)
@@ -37,9 +37,8 @@ le_national <- as.data.frame(le_national)
 
 # Find correlation between GNI and LE
 
-##Error in FUN(X[[i]], ...) : object 'Country Name' not found
-#gni_le <- gni_le %>% 
- # select(-`Country Name`, -`Country Code`, -`Series Code`)
+gni_le <- gni_le %>%
+  select(-`Country Name`, -`Country Code`, -`Series Code`)
 
 gni <- gni_le %>% 
   filter(`Series Name` == "Adjusted net national income per capita (constant 2010 US$)")

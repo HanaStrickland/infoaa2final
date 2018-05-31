@@ -61,7 +61,7 @@ For all races, average median income and life expectancy is ", avg_median_income
                  races, and White. This is the same order for median income."),
                p(a("The World Bank", href="http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators&preview=on"), 
                  "has data on Gross National Income (GNI) per capita and life expectancy from 1968 to 2016.
-                 When we compared those figures, there was a", #correlation_GNI_le, 
+                 When we compared those figures, there was a", correlation_GNI_le, 
                  "correlation between GNI per capita and life expectancy. This is consistent with
                  our finding that white people had higher median incomes and higher life expectancies."),
                p("The data use to create these visuals comes from the ",
