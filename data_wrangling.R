@@ -22,7 +22,7 @@ overview_le <- le_national %>%
 overview_plot <- ggplot(overview_le) +
   geom_point(mapping = aes(x = Year, y = Avg.Life.Expectancy.Years, color = Avg.Life.Expectancy.Years)) +
   scale_color_gradient(low = "orange", high = "blue") +
-  ggtitle("Average Life Expectancy Over Time 1900 to 2016") +
+  ggtitle("Average Life Expectancy Over Time 1900 to 2014") +
   theme(
     plot.title = element_text(size = 18),
     legend.position = "none") +

@@ -126,7 +126,6 @@ For all races, average median income and life expectancy is ", avg_median_income
                                            conditionalPanel(condition = "input.choice==1", plotlyOutput("plot2white", height = "600px"), 
                                                             HTML(
                                                               '<br><p align = "left">Average Age Range for Whites: 77.5-80</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
-                                  <p>White people have the third highest life expectancy in the U.S.A, likely due to their high income and low uninsured population.</p><br>
                                   <table style="width:80%" align="left">
                                   <tr>
                                   <td><p style="font-size:160%;">Average Age in General</p></td>
@@ -151,9 +150,7 @@ For all races, average median income and life expectancy is ", avg_median_income
                                   </table>')
                                            ),
                                            conditionalPanel(condition = "input.choice==2", plotlyOutput("plot2afa", height = "600px"),HTML(
-                                             '<br><p align = "left">Average Age Range for African Americans: 72.5-75</p>
-<br><p>African Americans in the U.S.A have one of the lowest life expectancies. This may be attributed to their median income, which is 
-also among the lowest at 38,145. </p><br><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
+                                             '<br><p align = "left">Average Age Range for African Americans: 72.5-75</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
                  <table style="width:80%" align="left">
                  <tr>
                  <td><p style="font-size:160%;">Average Age in General</p></td>
@@ -178,7 +175,6 @@ also among the lowest at 38,145. </p><br><h3>Facts About Life Expectancy For Eac
                  </table>')),
                                            conditionalPanel(condition="input.choice==3", plotlyOutput("plot2asa",height = "600px"),HTML(
                                              '<br><p align = "left">Average Age Range for Asian Americans: 87.5-90</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
-                 <p> Asian Americans have the highest life expectancy of all races in the U.S.A, despite not having the highes income nor lowest uninsured population. Scholars largely attribute their long lives to cultural factors.</p><br>
                  <table style="width:80%" align="left">
                  <tr>
                  <td><p style="font-size:160%;">Average Age in General</p></td>
@@ -203,7 +199,6 @@ also among the lowest at 38,145. </p><br><h3>Facts About Life Expectancy For Eac
                  </table>')),
                                            conditionalPanel(condition="input.choice==4", plotlyOutput("plot2na",height = "600px"),HTML(
                                              '<br><p align = "left">Average Age Range for Native Americans: 72.5-75</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
-                ><p> Native Americans have one of the lowest life expectancies of races in the U.S.A. This is commonly believed to be because of high alcohol consumption on reservations. To learn more about consequences alcohol consumption has on Native American reservations, you can visit  <a href="https://addiction.lovetoknow.com/wiki/Consequences_of_Alcoholism_in_Native_Americans">here</a></p><br>
                  <table style="width:80%" align="left">
                  <tr>
                  <td><p style="font-size:160%;">Average Age in General</p></td>
@@ -228,10 +223,6 @@ also among the lowest at 38,145. </p><br><h3>Facts About Life Expectancy For Eac
                  </table>')),
                                            conditionalPanel(condition="input.choice==5", plotlyOutput("plot2lat", height = "600px"), HTML(
                                              '<br><p align = "left">Average Age Range for Latinos: 85-87.5</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>
-<br><p>Latinos have the second highest life expectancy in the U.S.A, which is interesting because they also are the most uninsured race. Latinos high life expectancy has
- has puzzled scholars for decades, and Demographers call this the "Hispanic Epidemiological Paradox." According to <a href="https://www.prb.org/us-hispanics-life-expectancy/">PRB</a>, "One explanation is that cultural factors-such as better health habits and stronger networks of social support in the Hispanic community-may offer protection from some diseases and lead to longer lives."
-                                             </p><b>
-
                  <table style="width:80%" align="left">
                  <tr>
                  <td><p style="font-size:160%;">Average Age in General</p></td>
@@ -255,6 +246,19 @@ also among the lowest at 38,145. </p><br><h3>Facts About Life Expectancy For Eac
                  </tr>
                  </table>')
                                            ),
+                                           p("White people have the third highest life expectancy in the U.S.A, 
+                                             likely due to their high income and low uninsured population."),
+                                           p("African Americans in the U.S.A have one of the lowest life expectancies. This may be attributed to their median income, which is 
+ +also among the lowest at 38,145."),
+                                           p("Asian Americans have the highest life expectancy of all races in the U.S.A, 
+                                             despite not having the highes income nor lowest uninsured population. Scholars largely attribute their long lives to cultural factors."),
+                                           p("Native Americans have one of the lowest life expectancies of races in the U.S.A. This is commonly believed to be because of high alcohol consumption on reservations. 
+                                             To learn more about consequences alcohol consumption has on Native American reservations, you can visit ", 
+                                             a("here", href="https://addiction.lovetoknow.com/wiki/Consequences_of_Alcoholism_in_Native_Americans"), "."
+                                             ),
+                                           p("Latinos have the second highest life expectancy in the U.S.A, which is interesting because they also are the most uninsured race. Latinos high life expectancy has
+ + has puzzled scholars for decades, and Demographers call this the Hispanic Epidemiological Paradox. According to ", a("PRB", href="https://www.prb.org/us-hispanics-life-expectancy/"), 
+                                             em("One explanation is that cultural factors-such as better health habits and stronger networks of social support in the Hispanic community-may offer protection from some diseases and lead to longer lives.")),
                                            p("Information used in this visual comes from the ",
                                              a("National Center for Health Statistics", 
                                                href="https://data.cdc.gov/NCHS/NCHS-Death-rates-and-life-expectancy-at-birth/w9j2-ggv5/data"), ".")
