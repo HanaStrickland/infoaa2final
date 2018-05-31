@@ -5,18 +5,16 @@ source("le_by_state.R")
 
 
 ui <- fluidPage(theme = shinytheme("superhero"),
- headerPanel(HTML('<center>Working Title: Life Expectancies in the U.S.A</center>'), 
-             windowTitle = "Working Title: Life Expectancies in the U.S.A"),
+ headerPanel(HTML('<center>Life Expectancy in the U.S.A</center>'), 
+             windowTitle = "Life Expectancy in the U.S.A"),
              
                 
   sidebarLayout(position = "left",
                 fluid = TRUE,
   sidebarPanel(
-  #  useShinyjs()
     width = 2,
     
     
-    ## conditionalPanel() functions for selected tab
     conditionalPanel(condition = "input.tabselected == 1",
                      selectInput("year", label = "Select Year for Table", choices = years)
     ),
