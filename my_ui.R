@@ -33,8 +33,9 @@ ui <- fluidPage(theme = shinytheme("superhero"),
     ),
 
     conditionalPanel(
-      condition = "input.tabselected == 3",
-      radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3))),
+      condition = "input.tabselected == 3"
+      #radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3))
+      ),
        
     conditionalPanel(
       condition = "input.tabselect == 4"
@@ -98,10 +99,11 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
       ##################
       tabPanel("Question 3",
                value = 3,
-               conditionalPanel(condition = "input.choice2==1", plotlyOutput("plot3cw")),
-               conditionalPanel(condition = "input.choice2==2", plotlyOutput("plot3cb")),
-               conditionalPanel(condition = "input.choice2==3", plotlyOutput("plot3ch")),
-               plotOutput("plot3a"), plotOutput("plot3b")
+               # conditionalPanel(condition = "input.choice2==1", plotlyOutput("plot3cw")),
+               # conditionalPanel(condition = "input.choice2==2", plotlyOutput("plot3cb")),
+               # conditionalPanel(condition = "input.choice2==3", plotlyOutput("plot3ch")),
+               # plotOutput("plot3a"), plotOutput("plot3b"), 
+               plotOutput("plot3c")
       ),
       
       ##################

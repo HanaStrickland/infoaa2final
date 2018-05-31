@@ -238,63 +238,71 @@ server <- function(input, output) {
   ### Question 3 ###
   ##################
   # Question 3 Plots - Sebastian
-  output$plot3a <- renderPlot({
-    
-    plot3a <- ggplot(data = pct_women_poor_health) +
-      geom_point(mapping = aes(x = Location, y = All.Women,
-                               size = All.Women, color = Location)) +
-      labs(title = "Percent of Adult Women Reporting Fair or Poor Health Status by Race/Ethnicity",
-           x = "Location (State/Territory)",
-           y = "Percentage of Women Reporting Fair/Poor Health Status") +
-      theme(axis.text.x = element_blank())
-    plot3a
-  })
+  # output$plot3a <- renderPlot({
+  #   
+  #   plot3a <- ggplot(data = pct_women_poor_health) +
+  #     geom_point(mapping = aes(x = Location, y = All.Women,
+  #                              size = All.Women, color = Location)) +
+  #     labs(title = "Percent of Adult Women Reporting Fair or Poor Health Status by Race/Ethnicity",
+  #          x = "Location (State/Territory)",
+  #          y = "Percentage of Women Reporting Fair/Poor Health Status") +
+  #     theme(axis.text.x = element_blank())
+  #   plot3a
+  # })
+  # 
+  # output$plot3b <- renderPlot({
+  #   
+  #   plot3b <- ggplot(data = pct_men_poor_health) +
+  #     geom_point(mapping = aes(x = Location, y = All.Men,
+  #                              size = All.Men, color = Location)) +
+  #     labs(title = "Percent of Adult Men Reporting Fair or Poor Health Status by Race/Ethnicity",
+  #          x = "Location (State/Territory)",
+  #          y = "Percentage of Men Reporting Fair/Poor Health Status") +
+  #     theme(axis.text.x = element_blank())
+  #   plot3b
+  # })
+  # 
+  # output$plot3cw <- renderPlotly({
+  #   
+  #   plot3cw <- ggplot(data = state_dist_uninsured_by_race) +
+  #     geom_polygon(aes(x = long, y = lat, group = group, fill =
+  #                        cut(state_dist_uninsured_by_race$White, seq(0.1, 0.9, by = 0.2), include.lowest = TRUE))) +
+  #     scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+  #   plot3cw + geom_point()
+  #   ggplotly(plot3cw, tooltip="region")
+  #   plot3cw
+  # })
+  # 
+  # output$plot3cb <- renderPlotly({
+  #   
+  #   plot3cb <- ggplot(data = state_dist_uninsured_by_race) +
+  #     geom_polygon(aes(x = long, y = lat, group = group, fill =
+  #                        cut(state_dist_uninsured_by_race$Black, seq(0.1, 0.9, by = 0.2), include.lowest = TRUE))) +
+  #     scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+  #   plot3cb + geom_point()
+  #   ggplotly(plot3cb, tooltip="region")
+  #   plot3cb
+  # })
+  # 
+  # output$plot3ch <- renderPlotly({
+  #   
+  #   plot3ch <- ggplot(data = state_dist_uninsured_by_race) +
+  #     geom_polygon(aes(x = long, y = lat, group = group, fill =
+  #                        cut(state_dist_uninsured_by_race$Hispanic, seq(0.1, 0.9, by = 0.2), include.lowest = TRUE))) +
+  #     scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
+  #   plot3ch + geom_point()
+  #   ggplotly(plot3ch, tooltip="region")
+  #   plot3ch
+  # })
   
-  output$plot3b <- renderPlot({
-    
-    plot3b <- ggplot(data = pct_men_poor_health) +
-      geom_point(mapping = aes(x = Location, y = All.Men,
-                               size = All.Men, color = Location)) +
-      labs(title = "Percent of Adult Men Reporting Fair or Poor Health Status by Race/Ethnicity",
-           x = "Location (State/Territory)",
-           y = "Percentage of Men Reporting Fair/Poor Health Status") +
-      theme(axis.text.x = element_blank())
-    plot3b
+  output$plot3c <- renderPlot({
+    ggplot(uninsured_data, aes(x = Year, y = Data, color = `Race/Ethnicity`)) +
+      geom_point() +
+      facet_grid(~`Race/Ethnicity`) +
+      ggtitle("Percent of Uninsured by Race") +
+      theme(plot.title = element_text(size = 30), legend.position = "none") 
+      
   })
-  
-  output$plot3cw <- renderPlotly({
-    
-    plot3cw <- ggplot(data = state_dist_uninsured_by_race) +
-      geom_polygon(aes(x = long, y = lat, group = group, fill =
-                         cut(state_dist_uninsured_by_race$White, seq(0.1, 0.9, by = 0.2), include.lowest = TRUE))) +
-      scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
-    plot3cw + geom_point()
-    ggplotly(plot3cw, tooltip="region")
-    plot3cw
-  })
-  
-  output$plot3cb <- renderPlotly({
-    
-    plot3cb <- ggplot(data = state_dist_uninsured_by_race) +
-      geom_polygon(aes(x = long, y = lat, group = group, fill =
-                         cut(state_dist_uninsured_by_race$Black, seq(0.1, 0.9, by = 0.2), include.lowest = TRUE))) +
-      scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
-    plot3cb + geom_point()
-    ggplotly(plot3cb, tooltip="region")
-    plot3cb
-  })
-  
-  output$plot3ch <- renderPlotly({
-    
-    plot3ch <- ggplot(data = state_dist_uninsured_by_race) +
-      geom_polygon(aes(x = long, y = lat, group = group, fill =
-                         cut(state_dist_uninsured_by_race$Hispanic, seq(0.1, 0.9, by = 0.2), include.lowest = TRUE))) +
-      scale_fill_manual(values = c("#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"), na.value = "#636363") 
-    plot3ch + geom_point()
-    ggplotly(plot3ch, tooltip="region")
-    plot3ch
-  })
-  
   
   ################## 
   ### Question 4 ###

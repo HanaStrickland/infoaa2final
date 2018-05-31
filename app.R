@@ -9,6 +9,7 @@ library(ggthemes)
 library(highcharter)
 library(shinyjs)
 library(shinythemes)
+library(scales)
 
 
 source("my_ui.R")
