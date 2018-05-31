@@ -14,7 +14,7 @@ ui <- fluidPage(theme = shinytheme("superhero"),
   sidebarPanel(
     width = 2,
     
-    
+    # conditionalPanel() --- when tab is selected, you see the following widgets
     conditionalPanel(condition = "input.tabselected == 1",
                      selectInput("year", label = "Select Year for Table", choices = years)
     ),
@@ -233,8 +233,8 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
                value = 3,
                p("This visual shows the percent of uninsured by race. Each data point represents a state.
                  The visual shows that Hispanics are the highest uninsured demographic and whites are the
-                 lowest uninsured demographic. In 2016, uninsurance nationally among whites was ", white_uninsured,
-                 " and", his_uninsured, " among Hispanics. Asians had the next lowest uninsurance rate ", asian_uninsured,
+                 lowest uninsured demographic. In 2016, uninsured nationally among whites was ", white_uninsured,
+                 " and", his_uninsured, " among Hispanics. Asians had the next lowest uninsured rate ", asian_uninsured,
                  ". This was followed by African Americans with a rate of", afam_uninsured, "and Others or Multiple Races
                  with a rate of", other_uninsured, "."),
                p("Data for this visual comes from the ",
@@ -249,7 +249,8 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
                p("The scatter plot shows change in life expectancy between 1987 and 2009.
 Median life exepctancy in 1987 was ", strong(median_le_male_1987), " for males and ", strong(median_le_female_1987), " for females.
 Median life expectancy in 2009 was ", strong(median_le_male_2009)," for males and ", strong(median_le_female_2009), " for females.
-                 Median change in life expectancy was ", strong(median_change_in_le), " years."
+What this tells us is that women tend to live longer than men, but both men and women saw life expectancy from 1987 to 2009.
+                 Median change in average life expectancy was ", strong(median_change_in_le), " years."
                  ),
                p("Click on a state in the legend to see more information about that state."),
                sliderInput("avg_le",
@@ -261,6 +262,8 @@ Median life expectancy in 2009 was ", strong(median_le_male_2009)," for males an
                
     ),
     #highchartOutput("map1q4", width = "100%", height = "500px"),
+    br(),
+    br(),
     id = "tabselected"
   )
 )

@@ -19,46 +19,48 @@ uninsured_data <- uninsured_data %>%
   filter(Location != "United States")
 
 
-# uninsured by race in 2016, national
+# input: race; output: rate of uninsured by race for 2016 nationally
 
-his_uninsured <- uninsured_data_national %>% 
-  filter(`Race/Ethnicity` == "Hispanic / Latino", Year == "2016") %>% 
-  select(Data)
+get_uninsured_2016 <- function(race) {
+  race_to_string <- paste(race)
+  
+  rate <- uninsured_data_national %>% 
+    filter(`Race/Ethnicity` == race_to_string, Year == "2016") %>% 
+    select(Data)
+  
+  rate <- rate[1,1] #5.701
+  rate <- paste(rate, "%", sep = "")
+  rate
+}
 
-his_uninsured <- his_uninsured[1,1] #17.927
-his_uninsured <- paste(his_uninsured, "%", sep = "")
+his_uninsured <- get_uninsured_2016("Hispanic / Latino") #17.927
+other_uninsured <- get_uninsured_2016("Other / Multiple Races") #9.72
+afam_uninsured <- get_uninsured_2016("African-American / Black") # 9.555
+asian_uninsured <- get_uninsured_2016("Asian") #6.599
+white_uninsured <- get_uninsured_2016("White") # 5.701
 
+# MEDIANS
 
-other_uninsured <- uninsured_data_national %>% 
-  filter(`Race/Ethnicity` == "Other / Multiple Races", Year == "2016") %>% 
-  select(Data)
+# input: race; output: median uninsured rate for each race using all states and all available years
+get_median <- function(race) {
+  race_to_string <- paste(race)
+  
+  median <- uninsured_data %>%  
+    filter(`Race/Ethnicity` == race_to_string) %>% 
+    select(Data) %>% 
+    na.omit()
+  
+  median <- median(median$Data)
+  median
+  
+}
 
-other_uninsured <- other_uninsured[1,1] #9.72
-other_uninsured <- paste(other_uninsured, "%", sep = "")
-
-
-afam_uninsured <- uninsured_data_national %>% 
-  filter(`Race/Ethnicity` == "African-American / Black", Year == "2016") %>% 
-  select(Data)
-
-afam_uninsured <- afam_uninsured[1,1] # 9.555
-afam_uninsured <- paste(afam_uninsured, "%", sep = "")
-
-
-asian_uninsured <- uninsured_data_national %>% 
-  filter(`Race/Ethnicity` == "Asian", Year == "2016") %>% 
-  select(Data)
-
-asian_uninsured <- asian_uninsured[1,1] #6.599
-asian_uninsured <- paste(asian_uninsured, "%", sep = "")
-
-
-white_uninsured <- uninsured_data_national %>% 
-  filter(`Race/Ethnicity` == "White", Year == "2016") %>% 
-  select(Data)
-
-white_uninsured <- white_uninsured[1,1] #5.701
-white_uninsured <- paste(white_uninsured, "%", sep = "")
+asian_median <- get_median("Asian") # 11.207
+latio_median <- get_median("Hispanic / Latino") # 22.466
+white_median <- get_median("White") # 7.917
+black_median <- get_median("African-American / Black") # 12.807
+other_median <- get_median("Other / Multiple Races") # ll.906
 
 insurance_year_range <- range(uninsured_data_national$Year)
+
 

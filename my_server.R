@@ -10,6 +10,7 @@ server <- function(input, output) {
   ### Question 1 ###
   ##################
   
+  # reactive function makes income_by_le's Year equal to the year input in by the selectInput in the ui
   results_data1 <- reactive({
     
     results <- income_by_le[income_by_le$Year == input$year, ]
@@ -257,6 +258,7 @@ server <- function(input, output) {
   ### Question 4 ###
   ##################
   
+  #reactive function changes life expectancy range
   results_le_slider <- reactive({
     
     results <- trend %>%

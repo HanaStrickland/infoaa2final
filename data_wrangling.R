@@ -9,11 +9,6 @@ coverage_by_race <- read.csv("data/Health Insurance Coverage Type by Race.csv", 
 income_by_race <- as.data.frame(income_by_race)
 le_national <- as.data.frame(le_national)
 
-# pct_insurance_by_race <- read_xlsx("data/pct_insurance_by_race.xlsx")
-# le_by_income_state <- read.csv("data/health_ineq_online_table_5.csv", stringsAsFactors = FALSE)
-# us_gdp_le <- read.csv("data/world_bank_GDP_le.csv", stringsAsFactors = FALSE, na.strings = "..", check.names = FALSE)
-
-# pct_insurance_by_race <- as.data.frame(pct_insurance_by_race)
 
 
 
