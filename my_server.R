@@ -6,11 +6,22 @@ server <- function(input, output) {
   # In case you need to hide them for some reason
 
   # Server stuff
+  
+
   ################## 
   ### Question 1 ###
   ##################
   
   # reactive function makes income_by_le's Year equal to the year input in by the selectInput in the ui
+  
+  
+  output$overview <- renderPlotly({
+    
+    ggplotly(overview_plot)
+    
+  })
+  
+  
   results_data1 <- reactive({
     
     results <- income_by_le[income_by_le$Year == input$year, ]

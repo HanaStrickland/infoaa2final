@@ -15,11 +15,16 @@ ui <- fluidPage(theme = shinytheme("superhero"),
     width = 2,
     
     # conditionalPanel() --- when tab is selected, you see the following widgets
-    conditionalPanel(condition = "input.tabselected == 1",
-                     selectInput("year", label = "Select Year for Table", choices = years)
+    
+    conditionalPanel(
+      condition = "input.tabselected == 0"
+    ),
+    
+    conditionalPanel(condition = "input.tabselected == 1"
     ),
     conditionalPanel(
       condition = "input.tabselected == 2",
+      selectInput("year", label = "Select Year for Table", choices = years),
       radioButtons("choice", "Choose a Race", choices = c(
         "White" = 1,
         "African American" = 2,
@@ -50,6 +55,8 @@ ui <- fluidPage(theme = shinytheme("superhero"),
   mainPanel(
     
     tabsetPanel(
+      tabPanel(strong("Overview of Life Expectancy"), value = 0,
+               plotlyOutput("overview")),
       tabPanel(strong("Life Expectancy, Median Income, and Race"), value = 1, 
                
                p("If we take the average of median income and life expectancy between 2002 and 2016, we see that the median 
@@ -98,7 +105,7 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
       ##################      
       
 
-      tabPanel(strong("Heat Map of Life Expectancy by Race"), value = 2, align = "center",
+      tabPanel(strong("Heat Map of Life Expectancy"), value = 2, align = "center",
                conditionalPanel(condition="input.choice==1", plotlyOutput("plot2white", height = "600px"), 
                                 HTML(
                                   '<br><p align = "left">Average Age Range for Whites: 77.5-80</p><h3>Facts About Life Expectancy For Each Race in 2008</h3><br>

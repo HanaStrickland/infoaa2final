@@ -16,6 +16,21 @@ le_national <- as.data.frame(le_national)
 ### Question 1 ###
 ##################
 
+# plot le over time for overview
+
+overview_le <- le_national %>% 
+  filter(Sex == "Both Sexes", Race == "All Races") %>% 
+  na.omit()
+
+overview_plot <- ggplot(overview_le) +
+  geom_point(mapping = aes(x = Year, y = Avg.Life.Expectancy.Years, color = Avg.Life.Expectancy.Years)) +
+  scale_color_gradient(low = "orange", high = "blue") +
+  ggtitle("Average Life Expectancy Over Time 1900 to 2016") +
+  theme(
+        plot.title = element_text(size = 18),
+        legend.position = "none") +
+  labs(x = "Year", y = "Average Life Expectancy")
+
 
 # Find correlation between GNI and LE
 
@@ -122,6 +137,7 @@ le_at_birth_race <- rename(le_at_birth_race, region = Location)
 
 state_data <- map_data('state')
 new_data <- left_join(state_data, le_at_birth_race)
+
 new_data$African.American[new_data$African.American %in% "NSD"] <- "0"
 new_data[new_data == 0] <- NA
 new_data$African.American <- as.numeric(new_data$African.American)
