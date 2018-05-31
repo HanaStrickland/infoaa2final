@@ -31,11 +31,15 @@ ui <- fluidPage(theme = shinytheme("superhero"),
 
     conditionalPanel(
       condition = "input.tabselected == 3"
-      #radioButtons("choice2", "Choose a Race", choices = c("White" = 1, "Black" = 2, "Hispanic" = 3))
       ),
        
     conditionalPanel(
-      condition = "input.tabselect == 4"
+      condition = "input.tabselect == 4"#,
+      # sliderInput("avg_le", 
+      #             label = "Slide to filter for average life expectancy",
+      #             min = le_range[1],
+      #             max = le_range[2],
+      #             value = le_range)
     )
   ),
   mainPanel(
@@ -230,6 +234,12 @@ foreign residents, minus income earned in the domestic economy by nonresidents."
       ### Question 4 ###
       ##################
       tabPanel("Question 4", value=4,
+               p("Click on a state in the legend to see more."),
+               sliderInput("avg_le", 
+                           label = "Slide to filter for average life expectancy",
+                           min = le_range[1],
+                           max = le_range[2],
+                           value = le_range),
                plotlyOutput("plot4")
                
     ),

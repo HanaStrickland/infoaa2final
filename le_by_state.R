@@ -63,3 +63,5 @@ trend <- unique(trend)
   #x = "States",
   #y = "Change in Life Expectancy (in years)")
 #trend_plot
+
+le_range <- range(trend$avg.life.expectancy)

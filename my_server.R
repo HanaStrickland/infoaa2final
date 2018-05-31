@@ -18,6 +18,15 @@ server <- function(input, output) {
     
   })
   
+  results_le_slider <- reactive({
+    results <- trend[trend$avg.life.expectancy == input$avg_le]
+    
+    results <- results %>%
+      filter(le_range >= input$avg_le[1] & le_range <= input$avg_le[2])
+    
+    results
+  })
+  
 
   output$table1 <- renderDataTable({
     get_result <- results_data1()
@@ -215,7 +224,9 @@ server <- function(input, output) {
   
   output$plot2lat <- renderPlotly({
     
-    plot2lat <- ggplot(data = new_data) +
+    get_result <- results_le_slider()
+    
+    plot2lat <- ggplot(data = get_result) +
       geom_polygon(aes(x = long, y = lat, group = group, fill =
                          cut(new_data$Latino, seq(65, 90, by = 2.5), include.lowest = TRUE))) + 
       scale_fill_manual(name = "Age Range", values = c("#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"), na.value = "#636363") +
